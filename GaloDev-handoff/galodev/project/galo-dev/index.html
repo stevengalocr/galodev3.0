@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>GaloDev — Free tools, paid energy.</title>
+<meta name="description" content="A growing library of small, fast, beautifully made web tools. Free forever, no signup, no bullshit." />
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* ---- Home only ---- */
+  .hero {
+    padding: 56px 0 32px;
+    position: relative;
+  }
+  .hero-top {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 32px;
+  }
+  .hero-glow {
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(91, 209, 255,0.22), transparent 60%);
+    top: -180px; right: -200px;
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-headline {
+    font-family: var(--serif);
+    font-size: clamp(64px, 11vw, 188px);
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-headline .italic { font-style: italic; color: var(--lime); }
+  .hero-headline .strike { position: relative; display: inline-block; color: var(--paper-mute); }
+  .hero-headline .strike::after {
+    content: ""; position: absolute; left: -4%; right: -4%; top: 52%;
+    height: 6px; background: var(--rust); border-radius: 2px;
+    transform: rotate(-3deg);
+  }
+  .hero-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 48px;
+    align-items: end;
+    margin-top: 56px;
+    position: relative; z-index: 1;
+  }
+  .hero-sub {
+    font-size: 21px;
+    line-height: 1.4;
+    color: var(--paper-dim);
+    max-width: 480px;
+    letter-spacing: -0.005em;
+  }
+  .hero-sub strong { color: var(--paper); font-weight: 500; }
+  .hero-side {
+    display: flex; flex-direction: column;
+    gap: 18px;
+    padding: 24px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--ink-2);
+  }
+  .hero-side h4 {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--paper-mute);
+    font-weight: 500;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hero-side h4 .ping {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--lime); box-shadow: 0 0 8px var(--lime);
+  }
+  .hero-side-list { display: flex; flex-direction: column; gap: 4px; }
+  .hero-side-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+    transition: color 0.2s var(--ease);
+  }
+  .hero-side-item:last-child { border-bottom: 0; }
+  .hero-side-item:hover { color: var(--lime); }
+  .hero-side-item .num {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--paper-mute);
+  }
+  .hero-actions { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 72px;
+    padding: 32px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    position: relative; z-index: 1;
+  }
+  .hero-stat { padding: 0 24px; border-right: 1px solid var(--line); }
+  .hero-stat:last-child { border-right: 0; }
+  .hero-stat .num {
+    font-family: var(--serif);
+    font-size: clamp(36px, 4.5vw, 56px);
+    line-height: 1;
+    letter-spacing: -0.025em;
+  }
+  .hero-stat .num .italic { font-style: italic; color: var(--lime); }
+  .hero-stat .label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--paper-mute);
+    margin-top: 8px;
+  }
+
+  /* Categories */
+  .cats { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
+  .cat {
+    padding: 9px 16px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--paper-dim);
+    background: var(--ink-2);
+    transition: all 0.2s var(--ease);
+    display: inline-flex; align-items: center; gap: 8px;
+    cursor: pointer;
+  }
+  .cat:hover { border-color: var(--line-2); color: var(--paper); }
+  .cat.active {
+    background: var(--paper); color: var(--ink); border-color: var(--paper);
+    font-weight: 500;
+  }
+  .cat .ct {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 6px;
+    background: var(--ink-3);
+    color: var(--paper-mute);
+    border-radius: 4px;
+  }
+  .cat.active .ct { background: rgba(11,11,10,0.08); color: var(--ink); }
+
+  /* Why split */
+  .why {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .why-sticky { position: sticky; top: 96px; }
+  .why-eyebrow { margin-bottom: 24px; }
+  .why-h {
+    font-family: var(--serif);
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.96;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  .why-h .italic { color: var(--lime); }
+  .why-p { color: var(--paper-dim); font-size: 17px; max-width: 440px; }
+  .why-list { display: flex; flex-direction: column; }
+  .why-item {
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .why-item:last-child { border-bottom: 1px solid var(--line); }
+  .why-num {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--paper-mute);
+    letter-spacing: 0.06em;
+    padding-top: 4px;
+  }
+  .why-item h3 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 2.6vw, 34px);
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    line-height: 1.1;
+  }
+  .why-item p { color: var(--paper-dim); font-size: 15px; line-height: 1.55; }
+
+  /* Quote band */
+  .quote {
+    padding: 88px 0;
+    text-align: center;
+  }
+  .quote-text {
+    font-family: var(--serif);
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: 900px;
+    margin: 0 auto 24px;
+  }
+  .quote-text .italic { color: var(--lime); }
+  .quote-text .quotes { color: var(--paper-fade); }
+  .quote-by {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--paper-mute);
+  }
+
+  @media (max-width: 768px) {
+    .hero-row { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .hero-stat { border-right: 0; padding: 16px 0; border-bottom: 1px solid var(--line); }
+    .why { grid-template-columns: 1fr; gap: 32px; }
+    .why-sticky { position: static; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+        <path d="M6 22 L6 14 L10 14 L10 10 L14 10 L14 6 L18 6 L18 10 L22 10 L22 14 L26 14 L26 22 Z" fill="currentColor"/>
+        <circle cx="22" cy="18" r="1.2" fill="#050818"/>
+        <path d="M26 22 L28 26 L24 24 Z" fill="currentColor"/>
+      </svg>
+      <span class="galo italic">Galo</span><span class="dev">Dev</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link active">Tools</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="#changelog" class="nav-link">Changelog</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <button class="nav-search" data-search-trigger>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>
+      </svg>
+      <span>Search 48 tools…</span>
+      <kbd>⌘K</kbd>
+    </button>
+    <a href="about.html" class="btn btn-glow btn-sm">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      Tip the dev
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-top">
+      <span class="kicker">v3.2 · 48 tools live · no signup, ever</span>
+      <span class="live-counter"><span data-counter>2,847</span><strong>tools run today</strong></span>
+    </div>
+
+    <h1 class="hero-headline">
+      Free tools<br>
+      that feel <span class="italic">paid.</span>
+    </h1>
+
+    <div class="hero-row">
+      <div>
+        <p class="hero-sub">
+          A growing library of small, fast, beautifully made web tools.
+          <strong>No signup. No tracking circus. No "upgrade for export".</strong>
+          Built by one developer who got tired of ad-stuffed converter sites.
+        </p>
+        <div class="hero-actions">
+          <a href="tool.html" class="btn btn-glow btn-lg">
+            Browse all tools
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <button class="btn btn-ghost btn-lg" data-search-trigger>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            Search a tool
+          </button>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <h4><span class="ping"></span> Trending now</h4>
+        <div class="hero-side-list">
+          <a href="tool.html" class="hero-side-item">
+            <span>Password Generator</span>
+            <span class="num">812 uses · today</span>
+          </a>
+          <a href="tool.html" class="hero-side-item">
+            <span>JSON Formatter</span>
+            <span class="num">604 uses · today</span>
+          </a>
+          <a href="tool.html" class="hero-side-item">
+            <span>Color Palette Builder</span>
+            <span class="num">441 uses · today</span>
+          </a>
+          <a href="tool.html" class="hero-side-item">
+            <span>QR Code Maker</span>
+            <span class="num">389 uses · today</span>
+          </a>
+          <a href="tool.html" class="hero-side-item">
+            <span>Image Compressor</span>
+            <span class="num">312 uses · today</span>
+          </a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num">48<span class="italic">+</span></div>
+        <div class="label">Tools shipped</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">0<span class="italic">$</span></div>
+        <div class="label">Forever, for everything</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">2.1<span class="italic">M</span></div>
+        <div class="label">Runs this month</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">100<span class="italic">%</span></div>
+        <div class="label">Client-side, private</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="star">✦</span> Password Generator <span class="italic">·</span> JSON Formatter <span class="star">✦</span> Color Palette <span class="italic">·</span> QR Code Maker <span class="star">✦</span> Image Compressor <span class="italic">·</span> Markdown Editor <span class="star">✦</span> Lorem Ipsum <span class="italic">·</span> Unit Converter <span class="star">✦</span> Hash Generator <span class="italic">·</span> Base64 Encoder <span class="star">✦</span></span>
+    <span class="marquee-item"><span class="star">✦</span> Password Generator <span class="italic">·</span> JSON Formatter <span class="star">✦</span> Color Palette <span class="italic">·</span> QR Code Maker <span class="star">✦</span> Image Compressor <span class="italic">·</span> Markdown Editor <span class="star">✦</span> Lorem Ipsum <span class="italic">·</span> Unit Converter <span class="star">✦</span> Hash Generator <span class="italic">·</span> Base64 Encoder <span class="star">✦</span></span>
+  </div>
+</div>
+
+<!-- TOOLS -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-head-title">Popular this <span class="text-italic">week.</span></h2>
+      <a href="#" class="btn btn-ghost btn-sm">View all 48 →</a>
+    </div>
+
+    <div class="cats">
+      <button class="cat active">All <span class="ct">48</span></button>
+      <button class="cat">Generators <span class="ct">12</span></button>
+      <button class="cat">Converters <span class="ct">9</span></button>
+      <button class="cat">Text <span class="ct">8</span></button>
+      <button class="cat">Image <span class="ct">7</span></button>
+      <button class="cat">Color <span class="ct">5</span></button>
+      <button class="cat">Dev <span class="ct">7</span></button>
+    </div>
+
+    <div class="grid-tools">
+      <a href="tool.html" class="tool-card">
+        <div class="tool-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div class="tool-cat">Generator</div>
+        <h3 class="tool-name">Password Generator</h3>
+        <p class="tool-desc">Customizable length, character sets, entropy meter, exclude lookalikes.</p>
+        <div class="tool-foot">
+          <span class="tool-uses">812 today</span>
+          <span class="tool-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+        </div>
+      </a>
+
+      <a href="tool.html" class="tool-card">
+        <div class="tool-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6M14 4l-4 16"/></svg>
+        </div>
+        <div class="tool-cat">Dev / Format</div>
+        <h3 class="tool-name">JSON Formatter</h3>
+        <p class="tool-desc">Pretty-print, minify, validate. Tree view with collapse. Works on 50MB+ files.</p>
+        <div class="tool-foot">
+          <span class="tool-uses">604 today</span>
+          <span class="tool-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+        </div>
+      </a>
+
+      <a href="tool.html" class="tool-card">
+        <div class="tool-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="19" cy="13" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="10" cy="20" r="2.5"/></svg>
+        </div>
+        <div class="tool-cat">Color</div>
+        <h3 class="tool-name">Palette Builder</h3>
+        <p class="tool-desc">Generate harmonic palettes from any seed color. Export to Tailwind, Figma, CSS.</p>
+        <div class="tool-foot">
+          <span class="tool-uses">441 today</span>
+          <span class="tool-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+        </div>
+      </a>
+
+      <a href="tool.html" class="tool-card">
+        <div class="tool-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M21 14v7h-7M17 17h.01M21 21h.01"/></svg>
+        </div>
+        <div class="tool-cat">Generator</div>
+        <h3 class="tool-name">QR Code Maker</h3>
+        <p class="tool-desc">Wifi, vCard, links, payments. Custom colors, rounded modules, embed logos.</p>
+        <div class="tool-foot">
+          <span class="tool-uses">389 today</span>
+          <span class="tool-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+        </div>
+      </a>
+
+      <a href="tool.html" class="tool-card">
+        <div class="tool-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        </div>
+        <div class="tool-cat">Image</div>
+        <h3 class="tool-name">Image Compressor</h3>
+        <p class="tool-desc">PNG / JPG / WebP. Up to 90% smaller, on-device only. Drag a folder, get a zip.</p>
+        <div class="tool-foot">
+          <span class="tool-uses">312 today</span>
+          <span class="tool-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+        </div>
+      </a>
+
+      <a href="tool.html" class="tool-card">
+        <div class="tool-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg>
+        </div>
+        <div class="tool-cat">Text</div>
+        <h3 class="tool-name">Markdown Editor</h3>
+        <p class="tool-desc">Split-pane live preview, GFM tables, code highlighting, export to HTML/PDF.</p>
+        <div class="tool-foot">
+          <span class="tool-uses">277 today</span>
+          <span class="tool-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+        </div>
+      </a>
+
+      <a href="tool.html" class="tool-card">
+        <div class="tool-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        </div>
+        <div class="tool-cat">Converter</div>
+        <h3 class="tool-name">Unit Converter</h3>
+        <p class="tool-desc">Length, mass, volume, temperature, data, time, energy. 240+ units, offline.</p>
+        <div class="tool-foot">
+          <span class="tool-uses">241 today</span>
+          <span class="tool-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+        </div>
+      </a>
+
+      <a href="tool.html" class="tool-card">
+        <div class="tool-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m18 16 4-4-4-4M6 8l-4 4 4 4M14.5 4l-5 16"/></svg>
+        </div>
+        <div class="tool-cat">Dev</div>
+        <h3 class="tool-name">Base64 / Hash</h3>
+        <p class="tool-desc">Encode, decode, MD5, SHA-256, SHA-512. Files or text. Copy to clipboard with one tap.</p>
+        <div class="tool-foot">
+          <span class="tool-uses">198 today</span>
+          <span class="tool-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE BAND -->
+<div class="quote">
+  <div class="container">
+    <p class="quote-text">
+      <span class="quotes">"</span>I built GaloDev because every "free PDF converter" wanted my
+      <span class="italic">email, my soul</span>, and 14 ads before letting me click a button.<span class="quotes">"</span>
+    </p>
+    <span class="quote-by">— Galo, founder · 1 person, 48 tools, 0 trackers</span>
+  </div>
+</div>
+
+<!-- WHY -->
+<section style="border-top: 1px solid var(--line);">
+  <div class="container">
+    <div class="why">
+      <div class="why-sticky">
+        <span class="kicker why-eyebrow">The manifesto</span>
+        <h2 class="why-h">Built like<br>a <span class="italic">product,</span><br>not a funnel.</h2>
+        <p class="why-p">No "free tier vs pro tier". No popups. No "wait 5s for download". This is what tool sites should have felt like in 2014, and what they should feel like now.</p>
+      </div>
+      <div class="why-list">
+        <div class="why-item">
+          <span class="why-num">01</span>
+          <div>
+            <h3>Everything runs in your browser.</h3>
+            <p>Your files never touch a server. Close the tab, the data is gone. Most "online" converters can't promise that. We can — open the network tab and look.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-num">02</span>
+          <div>
+            <h3>One ad per page, max.</h3>
+            <p>Yes, this site has ads — that's how it stays free. But you'll see one, clearly labeled, never autoplay video, never interstitials. The tool is the product.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-num">03</span>
+          <div>
+            <h3>Designed once, shipped daily.</h3>
+            <p>Every tool uses the same design system, so once you learn one, you know them all. New tool roughly every 5 days. Suggestions get built fast.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-num">04</span>
+          <div>
+            <h3>Open source where it counts.</h3>
+            <p>The core engine, the tool framework, the design tokens — all MIT licensed on GitHub. Fork it, copy it, learn from it. Send a PR for your favorite tool.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FROM THE BLOG -->
+<section style="border-top: 1px solid var(--line);">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-head-title">From the <span class="text-italic">notebook.</span></h2>
+      <a href="blog.html" class="btn btn-ghost btn-sm">All articles →</a>
+    </div>
+
+    <div class="grid-articles">
+      <a href="article.html" class="article-card">
+        <div class="article-cover cover-1">
+          <span class="cover-orn">essay</span>
+          <span class="article-cover-tag">Building</span>
+        </div>
+        <div class="article-meta">
+          <span>Nov 12, 2024</span><span class="dot"></span><span>8 min read</span>
+        </div>
+        <h3 class="article-title">Why I built GaloDev in 30 days (and what almost killed it)</h3>
+        <p class="article-excerpt">The first version had 4 tools, zero traffic, and one obvious problem. Here's the rewrite that made it click.</p>
+      </a>
+
+      <a href="article.html" class="article-card">
+        <div class="article-cover cover-2">
+          <span class="cover-orn">money</span>
+          <span class="article-cover-tag">Revenue</span>
+        </div>
+        <div class="article-meta">
+          <span>Nov 04, 2024</span><span class="dot"></span><span>12 min read</span>
+        </div>
+        <h3 class="article-title">The hidden math of running a "free" tool site (real numbers).</h3>
+        <p class="article-excerpt">Server costs, ad revenue, the RPM ceiling nobody warns you about, and why most tool sites die at month 6.</p>
+      </a>
+
+      <a href="article.html" class="article-card">
+        <div class="article-cover cover-3">
+          <span class="cover-orn">craft</span>
+          <span class="article-cover-tag">Design</span>
+        </div>
+        <div class="article-meta">
+          <span>Oct 28, 2024</span><span class="dot"></span><span>6 min read</span>
+        </div>
+        <h3 class="article-title">Designing a 48-tool system without 48 designers.</h3>
+        <p class="article-excerpt">Component primitives, a strict tokens file, and the one constraint that saved me three months of work.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="border-top: 1px solid var(--line);">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker">FAQ</span>
+      <h2 class="section-head-title">Questions people<br><span class="text-italic">actually ask.</span></h2>
+    </div>
+    <div class="faq">
+      <div class="faq-item open">
+        <button class="faq-q">
+          <span class="faq-q-text">Is it really free? Where's the catch?</span>
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-a">No catch. Every tool, every feature, forever. The site is supported by a single ad slot per page (clearly labeled) and occasional voluntary tips. No premium tier, no upsell, no "export requires login."</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">Do you store my files or data?</span>
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-a">No. Every tool runs entirely in your browser using WebAssembly or vanilla JS. Files are processed locally and never uploaded. You can verify this by opening DevTools → Network tab while using any tool.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">Can I request a tool?</span>
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-a">Yes — that's how half the current tools got built. Open an issue on GitHub or tweet @galodev. If it's broadly useful and feasible client-side, expect a ship within 5–10 days.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">Why no accounts?</span>
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-a">Because the tools don't need them. Settings persist in localStorage, work is yours alone, and there's nothing to sync. Accounts would mean a database, which would mean costs, which would mean a paid tier. We're skipping all of that.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">Can I use the tools commercially?</span>
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-a">Yes. Generate logos for clients, build palettes for production, format JSON in your day job. The output is yours.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">How can I support the project?</span>
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-a">Don't block the single ad, share a tool with a friend, star the repo, or send a tip if you really want to. None of these are required.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section>
+  <div class="container">
+    <div class="cta">
+      <div class="cta-eyebrow">— Get the drop</div>
+      <h2 class="cta-title">New tool<br>every <span class="text-italic">friday.</span></h2>
+      <p class="cta-sub">A single email when a new tool ships. No marketing fluff, no "weekly digest", no 47-link footer. Just: "this one's live, here's what it does."</p>
+      <div class="cta-actions">
+        <form style="display:inline-flex; gap:8px; align-items:center; background:rgba(11,11,10,0.06); border:1px solid rgba(11,11,10,0.1); border-radius:999px; padding:6px 6px 6px 18px;">
+          <input type="email" placeholder="you@domain.com" style="font-size:14px; min-width:240px; color: var(--ink);"/>
+          <button class="btn btn-glow btn-sm">Subscribe</button>
+        </form>
+        <a href="#" class="btn btn-ghost">RSS feed →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="display-mark"><span class="italic">Galo</span>Dev</div>
+        <p>Free tools that feel paid. Built in public by one developer with too many open tabs.</p>
+        <div style="display:inline-flex; gap:10px; margin-top:24px;">
+          <a href="#" class="btn btn-icon btn-dark" aria-label="GitHub">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.69-3.87-1.54-3.87-1.54-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.69 1.25 3.35.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.16 1.18a11 11 0 0 1 2.88-.39c.98 0 1.96.13 2.88.39 2.2-1.49 3.16-1.18 3.16-1.18.63 1.58.23 2.75.12 3.04.73.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.13 0 1.54-.01 2.78-.01 3.16 0 .31.21.68.8.56C20.22 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5Z"/></svg>
+          </a>
+          <a href="#" class="btn btn-icon btn-dark" aria-label="Twitter">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" class="btn btn-icon btn-dark" aria-label="RSS">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20A2.18 2.18 0 0 1 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27zm0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <ul>
+          <li><a href="tool.html">Generators</a></li>
+          <li><a href="tool.html">Converters</a></li>
+          <li><a href="tool.html">Text</a></li>
+          <li><a href="tool.html">Image</a></li>
+          <li><a href="tool.html">Color</a></li>
+          <li><a href="tool.html">All 48 →</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Read</h4>
+        <ul>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="article.html">Changelog</a></li>
+          <li><a href="article.html">Open metrics</a></li>
+          <li><a href="article.html">Roadmap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Project</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">Request a tool</a></li>
+          <li><a href="#">Tip the dev</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Cookies</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-status">All systems operational · last deploy 4h ago</span>
+      <span>© 2024 GaloDev · MIT · Built in 🇨🇴</span>
+    </div>
+  </div>
+</footer>
+
+<!-- SEARCH MODAL -->
+<div class="search-modal" id="search-modal">
+  <div class="search-modal-inner">
+    <div class="search-input-wrap">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--paper-mute)"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="search-input" type="text" placeholder="Search 48 tools, 23 articles…" />
+      <button id="search-close" class="btn btn-dark btn-sm" style="padding:4px 10px;">Esc</button>
+    </div>
+    <div class="search-results">
+      <div class="search-group-label">Suggested tools</div>
+      <a href="tool.html" class="search-item active">
+        <div class="search-item-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div class="search-item-content">
+          <div class="search-item-title">Password Generator</div>
+          <div class="search-item-meta">Generator · 812 uses today</div>
+        </div>
+        <span class="search-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+      <a href="tool.html" class="search-item">
+        <div class="search-item-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+        </div>
+        <div class="search-item-content">
+          <div class="search-item-title">JSON Formatter</div>
+          <div class="search-item-meta">Dev · 604 uses today</div>
+        </div>
+        <span class="search-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+      <a href="tool.html" class="search-item">
+        <div class="search-item-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="19" cy="13" r="2.5"/><circle cx="6" cy="12" r="2.5"/></svg>
+        </div>
+        <div class="search-item-content">
+          <div class="search-item-title">Color Palette Builder</div>
+          <div class="search-item-meta">Color · 441 uses today</div>
+        </div>
+        <span class="search-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+      <div class="search-group-label" style="margin-top: 8px">From the blog</div>
+      <a href="article.html" class="search-item">
+        <div class="search-item-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+        </div>
+        <div class="search-item-content">
+          <div class="search-item-title">Why I built GaloDev in 30 days</div>
+          <div class="search-item-meta">Essay · 8 min read</div>
+        </div>
+        <span class="search-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </div>
+    <div class="search-foot">
+      <span><kbd>↑</kbd><kbd>↓</kbd> navigate <kbd>↵</kbd> select <kbd>esc</kbd> close</span>
+      <a href="search.html" style="color: var(--lime)">Full search →</a>
+    </div>
+  </div>
+</div>
+
+<script src="shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.anthropic.com)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(npm run *)",
+      "Bash(npm install *)",
+      "Bash(npx next *)",
+      "Bash(Remove-Item -Recurse -Force \"C:\\\\Users\\\\steve\\\\OneDrive\\\\Desktop\\\\GaloDev\\\\Codigo\\\\.next\" -ErrorAction SilentlyContinue)",
+      "Bash(Write-Host \"cleaned\")",
+      "Bash(npx rimraf *)",
+      "Bash(taskkill /f /im node.exe)",
+      "Bash(node -e \"const fs=require\\('fs'\\);fs.rmSync\\('.next',{recursive:true,force:true}\\);console.log\\('cleared'\\)\")",
+      "Bash(node -e \"const fs=require\\('fs'\\);try{fs.rmSync\\('.next',{recursive:true,force:true}\\);console.log\\('cleared'\\)}catch\\(e\\){console.log\\('already clear'\\)}\")",
+      "Bash(node -e \"try{require\\('fs'\\).rmSync\\('.next',{recursive:true,force:true}\\)}catch\\(e\\){}\")"
+    ]
+  }
+}

@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Blog — GaloDev</title>
+<meta name="description" content="Building in public. Notes on tools, revenue, design, and the long road from 0 users to 2M." />
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* Blog masthead */
+  .masthead {
+    padding: 64px 0 32px;
+    border-bottom: 1px solid var(--line);
+  }
+  .masthead-top {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    gap: 32px; flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .masthead h1 {
+    font-family: var(--serif);
+    font-size: clamp(72px, 14vw, 220px);
+    line-height: 0.86;
+    letter-spacing: -0.045em;
+  }
+  .masthead h1 .italic { font-style: italic; color: var(--lime); }
+  .masthead-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--paper-mute);
+    text-align: right;
+    line-height: 1.7;
+  }
+  .masthead-meta strong { color: var(--paper); }
+  .masthead-issue {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--paper-mute);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Featured editorial */
+  .featured {
+    padding: 64px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .feat-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .feat-cover {
+    aspect-ratio: 4/5;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    position: relative;
+  }
+  .feat-cover .cover-orn { font-size: 220px; color: rgba(232, 238, 250,0.06); }
+  .feat-tag {
+    position: absolute; top: 20px; left: 20px;
+    padding: 6px 12px;
+    background: rgba(11,11,10,0.78);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--line-2);
+    border-radius: 999px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .feat-num {
+    position: absolute; bottom: 20px; right: 20px;
+    font-family: var(--serif);
+    font-size: 80px;
+    line-height: 1;
+    font-style: italic;
+    color: var(--lime);
+  }
+  .feat-text .kicker { margin-bottom: 24px; }
+  .feat-text h2 {
+    font-family: var(--serif);
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  .feat-text h2 a { color: var(--paper); transition: color 0.2s var(--ease); }
+  .feat-text h2 a:hover { color: var(--lime); }
+  .feat-text .lede {
+    font-size: 18px;
+    color: var(--paper-dim);
+    line-height: 1.55;
+    margin-bottom: 24px;
+  }
+  .feat-byline {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 32px;
+  }
+  .feat-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--ink-3);
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--lime);
+    font-family: var(--serif);
+    font-size: 22px;
+    font-style: italic;
+  }
+  .feat-byline .name { font-size: 14px; color: var(--paper); }
+  .feat-byline .meta { font-family: var(--mono); font-size: 11px; color: var(--paper-mute); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* Filter strip */
+  .filter-strip {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+    flex-wrap: wrap; gap: 16px;
+  }
+  .filter-cats { display: flex; gap: 8px; flex-wrap: wrap; }
+  .filter-sort {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--paper-mute);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .filter-sort select {
+    color: var(--paper); cursor: pointer;
+    padding: 4px 24px 4px 12px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--ink-2);
+    -webkit-appearance: none; appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23F5F2EA' stroke-width='2'><path d='m6 9 6 6 6-6'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+  }
+
+  /* Article rows layout */
+  .blog-body {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 48px;
+    padding: 48px 0 64px;
+  }
+  .blog-articles { display: flex; flex-direction: column; }
+
+  /* Horizontal article row */
+  .article-row {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 32px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: center;
+  }
+  .article-row:first-child { padding-top: 0; }
+  .article-row .article-cover { aspect-ratio: 4/3; margin: 0; border-radius: 12px; }
+  .article-row .article-title { font-size: clamp(28px, 2.8vw, 38px); margin: 12px 0 12px; }
+  .article-row .article-excerpt { font-size: 15px; margin-bottom: 16px; }
+  .article-row .row-foot {
+    display: flex; align-items: center; gap: 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--paper-mute);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .article-row .row-foot .dot { width: 3px; height: 3px; background: var(--paper-fade); border-radius: 50%; }
+
+  /* Blog sidebar */
+  .blog-side { display: flex; flex-direction: column; gap: 24px; position: sticky; top: 96px; align-self: start; }
+  .blog-side-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--ink-2);
+    overflow: hidden;
+  }
+  .blog-side-card .head {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--paper-mute);
+  }
+  .blog-side-card .body { padding: 10px; }
+  .topic { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border-radius: 8px; font-size: 14px; transition: background 0.2s var(--ease); }
+  .topic:hover { background: var(--ink-3); color: var(--lime); }
+  .topic .ct { font-family: var(--mono); font-size: 11px; color: var(--paper-mute); }
+  .topic:hover .ct { color: var(--lime); }
+
+  /* Newsletter inline */
+  .newsletter-inline {
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, rgba(91, 209, 255,0.08), transparent 60%), var(--ink-2);
+  }
+  .newsletter-inline h4 {
+    font-family: var(--serif);
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+  .newsletter-inline h4 .italic { color: var(--lime); }
+  .newsletter-inline p { font-size: 13px; color: var(--paper-mute); margin-bottom: 16px; }
+  .newsletter-inline form { display: flex; flex-direction: column; gap: 8px; }
+  .newsletter-inline input { padding: 10px 14px; border: 1px solid var(--line-2); border-radius: 999px; font-size: 13px; color: var(--paper); background: var(--ink); }
+  .newsletter-inline input::placeholder { color: var(--paper-fade); }
+
+  @media (max-width: 1024px) {
+    .feat-grid { grid-template-columns: 1fr; }
+    .feat-cover { aspect-ratio: 16/9; }
+    .blog-body { grid-template-columns: 1fr; }
+    .blog-side { position: static; }
+  }
+  @media (max-width: 768px) {
+    .article-row { grid-template-columns: 1fr; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+        <path d="M6 22 L6 14 L10 14 L10 10 L14 10 L14 6 L18 6 L18 10 L22 10 L22 14 L26 14 L26 22 Z" fill="currentColor"/>
+        <circle cx="22" cy="18" r="1.2" fill="#050818"/>
+        <path d="M26 22 L28 26 L24 24 Z" fill="currentColor"/>
+      </svg>
+      <span class="galo italic">Galo</span><span class="dev">Dev</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Tools</a>
+      <a href="blog.html" class="nav-link active">Blog</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="#changelog" class="nav-link">Changelog</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <button class="nav-search" data-search-trigger>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <span>Search articles…</span>
+      <kbd>⌘K</kbd>
+    </button>
+    <a href="about.html" class="btn btn-glow btn-sm">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      Tip the dev
+    </a>
+  </div>
+</nav>
+
+<!-- MASTHEAD -->
+<div class="container">
+  <header class="masthead">
+    <div class="masthead-top">
+      <h1>The<br><span class="italic">notebook.</span></h1>
+      <div class="masthead-meta">
+        <div><strong>23 entries</strong> · since 2023</div>
+        <div>building, shipping, occasionally fighting Cloudflare</div>
+        <div style="margin-top:12px"><strong>Issue 23</strong> · Nov 2024</div>
+      </div>
+    </div>
+    <div class="masthead-issue">
+      <span>← Older issues</span>
+      <span>Currently reading · all entries · sorted recent first</span>
+      <span><a href="#" style="color: var(--lime)">RSS feed →</a></span>
+    </div>
+  </header>
+</div>
+
+<!-- FEATURED -->
+<section class="featured">
+  <div class="container">
+    <div class="feat-grid">
+      <div class="feat-cover cover-1">
+        <span class="cover-orn">essay</span>
+        <span class="feat-tag">▲ Featured</span>
+        <span class="feat-num">№23</span>
+      </div>
+      <div class="feat-text">
+        <span class="kicker">Latest · long read</span>
+        <h2><a href="article.html">Why I built GaloDev in 30 days (and what almost killed it).</a></h2>
+        <p class="lede">The first version had four tools, zero traffic, and one obvious problem. Three weeks in I almost shelved it. Then I changed one assumption about who I was building for, and everything broke open. Here's the rewrite, the numbers, and the parts I'd skip if I were starting again today.</p>
+        <div class="feat-byline">
+          <span class="feat-avatar italic">G</span>
+          <div>
+            <div class="name">Galo</div>
+            <div class="meta">Nov 12, 2024 · 8 min read</div>
+          </div>
+        </div>
+        <div class="flex gap-3">
+          <a href="article.html" class="btn btn-glow">Read the essay
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="article.html" class="btn btn-ghost">Listen · 11 min</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER STRIP -->
+<div class="container">
+  <div class="filter-strip">
+    <div class="filter-cats">
+      <button class="cat active">All <span class="ct">23</span></button>
+      <button class="cat">Building <span class="ct">9</span></button>
+      <button class="cat">Revenue <span class="ct">4</span></button>
+      <button class="cat">Design <span class="ct">6</span></button>
+      <button class="cat">Tech <span class="ct">3</span></button>
+      <button class="cat">Personal <span class="ct">1</span></button>
+    </div>
+    <div class="filter-sort">
+      <span>Sort</span>
+      <select>
+        <option>Most recent</option>
+        <option>Most read</option>
+        <option>Longest</option>
+        <option>Shortest</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="container">
+  <div class="blog-body">
+    <div class="blog-articles">
+
+      <article class="article-row article-card">
+        <a href="article.html" class="article-cover cover-2">
+          <span class="cover-orn">money</span>
+          <span class="article-cover-tag">Revenue</span>
+        </a>
+        <div>
+          <div class="row-foot">
+            <span>№ 22</span><span class="dot"></span>
+            <span>Nov 04, 2024</span><span class="dot"></span>
+            <span>12 min read</span><span class="dot"></span>
+            <span style="color: var(--lime)">Most read this month</span>
+          </div>
+          <h3 class="article-title"><a href="article.html">The hidden math of running a "free" tool site (real numbers, no fluff).</a></h3>
+          <p class="article-excerpt">Server costs, ad revenue, the RPM ceiling nobody warns you about, and why most tool sites quietly die at month six. With my actual P&amp;L for the last quarter.</p>
+        </div>
+      </article>
+
+      <article class="article-row article-card">
+        <a href="article.html" class="article-cover cover-3">
+          <span class="cover-orn">craft</span>
+          <span class="article-cover-tag">Design</span>
+        </a>
+        <div>
+          <div class="row-foot">
+            <span>№ 21</span><span class="dot"></span>
+            <span>Oct 28, 2024</span><span class="dot"></span>
+            <span>6 min read</span>
+          </div>
+          <h3 class="article-title"><a href="article.html">Designing a 48-tool system without 48 designers.</a></h3>
+          <p class="article-excerpt">Component primitives, a strict tokens file, and the one constraint that saved me three months of work.</p>
+        </div>
+      </article>
+
+      <!-- Inline ad in feed -->
+      <div class="ad-block ad-block-inline" style="margin: 24px 0;">
+        <span class="ad-block-label">Sponsored · AdSense</span>
+        <div class="ad-block-inner">In-feed native · 728 × 250</div>
+      </div>
+
+      <article class="article-row article-card">
+        <a href="article.html" class="article-cover cover-4">
+          <span class="cover-orn">build</span>
+          <span class="article-cover-tag">Building</span>
+        </a>
+        <div>
+          <div class="row-foot">
+            <span>№ 20</span><span class="dot"></span>
+            <span>Oct 19, 2024</span><span class="dot"></span>
+            <span>9 min read</span>
+          </div>
+          <h3 class="article-title"><a href="article.html">Migrating from Vercel to a $4 VPS (and why I'd do it again).</a></h3>
+          <p class="article-excerpt">Latency, bandwidth, the 30-day wait for $200 in credits, and a Dockerfile that fit on a sticky note.</p>
+        </div>
+      </article>
+
+      <article class="article-row article-card">
+        <a href="article.html" class="article-cover cover-5">
+          <span class="cover-orn">type</span>
+          <span class="article-cover-tag">Design</span>
+        </a>
+        <div>
+          <div class="row-foot">
+            <span>№ 19</span><span class="dot"></span>
+            <span>Oct 11, 2024</span><span class="dot"></span>
+            <span>7 min read</span>
+          </div>
+          <h3 class="article-title"><a href="article.html">A serif italic in a tool site? Yes. Here's why it works.</a></h3>
+          <p class="article-excerpt">The whole design vocabulary of utility sites is "Inter, blue links, gray cards". Breaking that pattern is half the brand.</p>
+        </div>
+      </article>
+
+      <article class="article-row article-card">
+        <a href="article.html" class="article-cover cover-6">
+          <span class="cover-orn">code</span>
+          <span class="article-cover-tag">Tech</span>
+        </a>
+        <div>
+          <div class="row-foot">
+            <span>№ 18</span><span class="dot"></span>
+            <span>Oct 02, 2024</span><span class="dot"></span>
+            <span>5 min read</span>
+          </div>
+          <h3 class="article-title"><a href="article.html">crypto.getRandomValues() is not slow. Your code is.</a></h3>
+          <p class="article-excerpt">A short post about a micro-benchmark that surprised me and led to a 40× speedup on the password generator.</p>
+        </div>
+      </article>
+
+      <article class="article-row article-card">
+        <a href="article.html" class="article-cover cover-1">
+          <span class="cover-orn">user</span>
+          <span class="article-cover-tag">Building</span>
+        </a>
+        <div>
+          <div class="row-foot">
+            <span>№ 17</span><span class="dot"></span>
+            <span>Sep 24, 2024</span><span class="dot"></span>
+            <span>10 min read</span>
+          </div>
+          <h3 class="article-title"><a href="article.html">From 0 to 200K monthly visits without writing a single Twitter thread.</a></h3>
+          <p class="article-excerpt">SEO, organic discovery, the one Reddit post that 10x'd everything, and what I refused to do that everyone said I should.</p>
+        </div>
+      </article>
+
+      <article class="article-row article-card">
+        <a href="article.html" class="article-cover cover-2">
+          <span class="cover-orn">ad</span>
+          <span class="article-cover-tag">Revenue</span>
+        </a>
+        <div>
+          <div class="row-foot">
+            <span>№ 16</span><span class="dot"></span>
+            <span>Sep 14, 2024</span><span class="dot"></span>
+            <span>14 min read</span>
+          </div>
+          <h3 class="article-title"><a href="article.html">What AdSense actually pays for a tool site (Q3 breakdown).</a></h3>
+          <p class="article-excerpt">RPM by country, by device, by tool category. The 80/20 of revenue, where ads die, and the placement test that doubled my CTR.</p>
+        </div>
+      </article>
+
+      <!-- Pagination -->
+      <div style="display:flex; justify-content:space-between; align-items:center; padding: 40px 0; border-top: 1px solid var(--line);">
+        <button class="btn btn-ghost btn-sm" disabled style="opacity:0.4">← Newer</button>
+        <span class="mono text-mute" style="font-size:12px; letter-spacing: 0.08em">PAGE 1 OF 4 · entries 23–17</span>
+        <a href="#" class="btn btn-ghost btn-sm">Older →</a>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="blog-side">
+      <div class="newsletter-inline">
+        <h4>Get the next <span class="italic">drop.</span></h4>
+        <p>One email when a tool ships or a new essay drops. No marketing fluff.</p>
+        <form>
+          <input type="email" placeholder="you@domain.com" />
+          <button class="btn btn-glow">Subscribe</button>
+        </form>
+      </div>
+
+      <div class="blog-side-card">
+        <div class="head">Topics</div>
+        <div class="body">
+          <a href="#" class="topic"><span>Building in public</span><span class="ct">9</span></a>
+          <a href="#" class="topic"><span>Revenue &amp; ads</span><span class="ct">4</span></a>
+          <a href="#" class="topic"><span>Design systems</span><span class="ct">6</span></a>
+          <a href="#" class="topic"><span>Infra &amp; perf</span><span class="ct">3</span></a>
+          <a href="#" class="topic"><span>Founder life</span><span class="ct">1</span></a>
+        </div>
+      </div>
+
+      <!-- Sidebar ad -->
+      <div class="ad-block">
+        <span class="ad-block-label">Sponsored · AdSense</span>
+        <div class="ad-block-inner">300 × 600 · sticky sidebar</div>
+      </div>
+
+      <div class="blog-side-card">
+        <div class="head">Most read · all time</div>
+        <div class="body" style="padding: 14px 18px;">
+          <ol style="list-style:none; counter-reset:i; display:flex; flex-direction:column; gap:14px;">
+            <li style="counter-increment:i; display:grid; grid-template-columns: 28px 1fr; gap:10px; align-items:start;">
+              <span style="font-family:var(--serif); font-style:italic; font-size:24px; color:var(--lime); line-height:1;">№1</span>
+              <a href="article.html" style="font-size:14px; color:var(--paper-dim); line-height:1.35">What AdSense actually pays for a tool site</a>
+            </li>
+            <li style="counter-increment:i; display:grid; grid-template-columns: 28px 1fr; gap:10px; align-items:start;">
+              <span style="font-family:var(--serif); font-style:italic; font-size:24px; color:var(--paper-mute); line-height:1;">№2</span>
+              <a href="article.html" style="font-size:14px; color:var(--paper-dim); line-height:1.35">From 0 to 200K monthly visits</a>
+            </li>
+            <li style="counter-increment:i; display:grid; grid-template-columns: 28px 1fr; gap:10px; align-items:start;">
+              <span style="font-family:var(--serif); font-style:italic; font-size:24px; color:var(--paper-mute); line-height:1;">№3</span>
+              <a href="article.html" style="font-size:14px; color:var(--paper-dim); line-height:1.35">The hidden math of running a free tool site</a>
+            </li>
+            <li style="counter-increment:i; display:grid; grid-template-columns: 28px 1fr; gap:10px; align-items:start;">
+              <span style="font-family:var(--serif); font-style:italic; font-size:24px; color:var(--paper-mute); line-height:1;">№4</span>
+              <a href="article.html" style="font-size:14px; color:var(--paper-dim); line-height:1.35">Designing 48 tools without 48 designers</a>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- CTA -->
+<section style="border-top: 1px solid var(--line);">
+  <div class="container">
+    <div class="cta">
+      <div class="cta-eyebrow">— Don't miss an issue</div>
+      <h2 class="cta-title">A new tool<br>and a new <span class="text-italic">essay.</span></h2>
+      <p class="cta-sub">Every Friday. Sometimes a tool. Sometimes a thousand-word essay about why I rewrote the password generator three times. Always optional.</p>
+      <div class="cta-actions">
+        <form style="display:inline-flex; gap:8px; align-items:center; background:rgba(11,11,10,0.06); border:1px solid rgba(11,11,10,0.1); border-radius:999px; padding:6px 6px 6px 18px;">
+          <input type="email" placeholder="you@domain.com" style="font-size:14px; min-width:240px; color: var(--ink);"/>
+          <button class="btn btn-glow btn-sm">Subscribe</button>
+        </form>
+        <a href="#" class="btn btn-ghost">RSS feed →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="display-mark"><span class="italic">Galo</span>Dev</div>
+        <p>Free tools that feel paid. Built in public by one developer with too many open tabs.</p>
+      </div>
+      <div class="footer-col"><h4>Tools</h4><ul><li><a href="index.html">Generators</a></li><li><a href="index.html">Converters</a></li><li><a href="index.html">Text</a></li><li><a href="index.html">Image</a></li></ul></div>
+      <div class="footer-col"><h4>Read</h4><ul><li><a href="blog.html">Blog</a></li><li><a href="article.html">Changelog</a></li><li><a href="article.html">Roadmap</a></li></ul></div>
+      <div class="footer-col"><h4>Project</h4><ul><li><a href="about.html">About</a></li><li><a href="#">GitHub</a></li><li><a href="#">Request a tool</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-status">All systems operational</span>
+      <span>© 2024 GaloDev · MIT · Built in 🇨🇴</span>
+    </div>
+  </div>
+</footer>
+
+<!-- SEARCH MODAL -->
+<div class="search-modal" id="search-modal">
+  <div class="search-modal-inner">
+    <div class="search-input-wrap">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--paper-mute)"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="search-input" type="text" placeholder="Search 23 articles…" />
+      <button id="search-close" class="btn btn-dark btn-sm" style="padding:4px 10px;">Esc</button>
+    </div>
+    <div class="search-results">
+      <div class="search-group-label">From the blog</div>
+      <a href="article.html" class="search-item active">
+        <div class="search-item-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></div>
+        <div class="search-item-content">
+          <div class="search-item-title">Why I built GaloDev in 30 days</div>
+          <div class="search-item-meta">Essay · 8 min read · Nov 12</div>
+        </div>
+      </a>
+    </div>
+    <div class="search-foot">
+      <span><kbd>↑</kbd><kbd>↓</kbd> navigate <kbd>↵</kbd> select <kbd>esc</kbd> close</span>
+      <a href="search.html" style="color: var(--lime)">Full search →</a>
+    </div>
+  </div>
+</div>
+
+<script src="shared.js"></script>
+</body>
+</html>
