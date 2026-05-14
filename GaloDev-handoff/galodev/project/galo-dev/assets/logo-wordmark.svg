@@ -1,9 +1,0 @@
-<svg width="120" height="28" viewBox="0 0 120 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <g transform="translate(0,2)">
-    <path d="M2 18 L2 10 L6 10 L6 7 L9 7 L9 4 L12 4 L12 7 L15 7 L15 10 L19 10 L19 18 Z" fill="currentColor"></path>
-    <circle cx="15.5" cy="13" r="0.9" fill="#050818"></circle>
-    <path d="M19 18 L21 21 L17.5 19.5 Z" fill="currentColor"></path>
-  </g>
-  <text x="28" y="20" font-family="&#39;Instrument Serif&#39;, serif" font-size="22" font-style="italic" fill="currentColor">Galo</text>
-  <text x="68" y="20" font-family="&#39;Geist&#39;, sans-serif" font-size="20" font-weight="600" fill="currentColor" letter-spacing="-0.5">Dev</text>
-</svg>
