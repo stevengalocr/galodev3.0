@@ -30,7 +30,7 @@ const marqueeItems = [
 
 export default function HomePage() {
   const featuredTools = tools.slice(0, 8);
-  const featuredArticles = articles.slice(0, 3);
+  const featuredArticles = [...articles].slice(-3).reverse();
 
   return (
     <>

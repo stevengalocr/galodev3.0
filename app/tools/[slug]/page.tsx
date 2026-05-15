@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { getToolBySlug, tools } from '@/lib/tools';
 import AdBlock from '@/components/AdBlock';
 import ToolCard from '@/components/ToolCard';
-import SubscribeForm from '@/components/SubscribeForm';
+
 import ToolRenderer from '@/components/tools/ToolRenderer';
 import { hasImplementation } from '@/lib/toolsImpl';
 
@@ -111,9 +111,16 @@ export default async function ToolPage({ params }: Props) {
                   <em style={{ color: 'var(--lime)' }}>{tool.name}</em> en construcción.
                 </h2>
                 <p style={{ color: 'var(--paper-mute)', maxWidth: 400 }}>
-                  Esta herramienta está en desarrollo activo. Suscríbete para recibir notificación cuando esté lista.
+                  Esta herramienta está en desarrollo activo. Escríbenos si quieres que la prioricemos.
                 </p>
-                <SubscribeForm buttonLabel="Avísame" />
+                <div style={{ display: 'inline-flex', gap: 12 }}>
+                  <a href="https://wa.me/50672874779" target="_blank" rel="noopener noreferrer" className="btn btn-glow">
+                    WhatsApp
+                  </a>
+                  <a href="https://github.com/stevengalocr" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+                    GitHub
+                  </a>
+                </div>
               </div>
             )}
           </div>

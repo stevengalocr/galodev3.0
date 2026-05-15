@@ -50,9 +50,11 @@ export default function Footer() {
             <h4>Leer</h4>
             <ul>
               <li><Link href="/blog">Blog</Link></li>
-              <li><Link href="/blog/desplegar-con-vercel">Deploy con Vercel</Link></li>
+              <li><Link href="/blog/que-es-nextjs">¿Qué es Next.js?</Link></li>
+              <li><Link href="/blog/que-es-docker">¿Qué es Docker?</Link></li>
               <li><Link href="/blog/claude-vs-chatgpt">Claude vs ChatGPT</Link></li>
-              <li><Link href="/blog/grok-vs-gemini">Grok vs Gemini</Link></li>
+              <li><Link href="/blog/desplegar-con-vercel">Deploy con Vercel</Link></li>
+              <li><Link href="/blog">Todos →</Link></li>
             </ul>
           </div>
 

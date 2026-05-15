@@ -5,7 +5,7 @@ import { getArticleBySlug, getAllSlugs, articles } from '@/lib/articles';
 import AdBlock from '@/components/AdBlock';
 import ArticleCard from '@/components/ArticleCard';
 import ArticleTOC from '@/components/ArticleTOC';
-import SubscribeForm from '@/components/SubscribeForm';
+
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -82,7 +82,7 @@ export default async function ArticlePage({ params }: Props) {
               <span style={{ width: 48, height: 48, borderRadius: '50%', background: 'var(--ink-3)', border: '1px solid var(--line)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--lime)', fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 26 }}>G</span>
               <div>
                 <div style={{ fontSize: 15, color: 'var(--paper)' }}>Galo</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--paper-mute)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Fundador · indie · Bogotá</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--paper-mute)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Fundador · Costa Rica</div>
               </div>
             </div>
             <div style={{ flex: 1 }} />
@@ -174,11 +174,16 @@ export default async function ArticlePage({ params }: Props) {
       <section>
         <div className="container">
           <div className="cta cta-dark">
-            <div className="cta-eyebrow">— Recibe el siguiente</div>
-            <h2 className="cta-title">Cada viernes.<br />Un <span className="text-italic">artículo.</span></h2>
-            <p className="cta-sub">Sin &quot;digest semanal&quot;, sin emails de marketing. Solo el siguiente cuando salga.</p>
+            <div className="cta-eyebrow">— Construido en público</div>
+            <h2 className="cta-title">¿Tienes una<br /><span className="text-italic">sugerencia?</span></h2>
+            <p className="cta-sub">Seguimos construyendo. Si tienes una idea para una herramienta o un tema para el blog, escríbenos directamente o abre un issue en GitHub.</p>
             <div className="cta-actions">
-              <SubscribeForm />
+              <a href="https://wa.me/50672874779" target="_blank" rel="noopener noreferrer" className="btn btn-glow">
+                WhatsApp
+              </a>
+              <a href="https://github.com/stevengalocr" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+                GitHub
+              </a>
             </div>
           </div>
         </div>
