@@ -55,7 +55,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="es"
       className={GeistSans.variable}
     >
-      <head>
+      <body style={{ fontFamily: 'var(--font-sans)' }}>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
         {adsenseId && (
           <Script
             async
@@ -64,11 +67,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             strategy="afterInteractive"
           />
         )}
-      </head>
-      <body style={{ fontFamily: 'var(--font-sans)' }}>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
       </body>
     </html>
   );
