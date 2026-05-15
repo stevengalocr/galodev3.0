@@ -47,26 +47,24 @@ export const metadata: Metadata = {
   },
 };
 
-const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID;
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="es"
       className={GeistSans.variable}
     >
+      <head>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8417467581385725"
+          crossOrigin="anonymous"
+          strategy="beforeInteractive"
+        />
+      </head>
       <body style={{ fontFamily: 'var(--font-sans)' }}>
         <Navbar />
         <main>{children}</main>
         <Footer />
-        {adsenseId && (
-          <Script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
-            crossOrigin="anonymous"
-            strategy="afterInteractive"
-          />
-        )}
       </body>
     </html>
   );
