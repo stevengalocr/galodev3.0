@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import ToolCard from '@/components/ToolCard';
 import AdBlock from '@/components/AdBlock';
-import SubscribeForm from '@/components/SubscribeForm';
+
 import { tools, toolCategories } from '@/lib/tools';
 
 export const metadata: Metadata = {
@@ -62,9 +62,16 @@ export default function ToolsPage() {
               Más herramientas <em style={{ color: 'var(--lime)' }}>en camino.</em>
             </h2>
             <p style={{ color: 'var(--paper-mute)', maxWidth: 480, margin: '0 auto 24px' }}>
-              Seguimos construyendo la biblioteca. Suscríbete para recibir notificación cuando una nueva herramienta esté lista.
+              ¿Tienes una sugerencia? Escríbenos directamente o abre un issue en GitHub.
             </p>
-            <SubscribeForm buttonLabel="Avísame" />
+            <div style={{ display: 'inline-flex', gap: 12 }}>
+              <a href="https://wa.me/50672874779" target="_blank" rel="noopener noreferrer" className="btn btn-glow">
+                WhatsApp
+              </a>
+              <a href="https://github.com/stevengalocr" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+                GitHub
+              </a>
+            </div>
           </div>
         </div>
       </section>

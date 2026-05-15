@@ -12,7 +12,19 @@
       "Bash(taskkill /f /im node.exe)",
       "Bash(node -e \"const fs=require\\('fs'\\);fs.rmSync\\('.next',{recursive:true,force:true}\\);console.log\\('cleared'\\)\")",
       "Bash(node -e \"const fs=require\\('fs'\\);try{fs.rmSync\\('.next',{recursive:true,force:true}\\);console.log\\('cleared'\\)}catch\\(e\\){console.log\\('already clear'\\)}\")",
-      "Bash(node -e \"try{require\\('fs'\\).rmSync\\('.next',{recursive:true,force:true}\\)}catch\\(e\\){}\")"
+      "Bash(node -e \"try{require\\('fs'\\).rmSync\\('.next',{recursive:true,force:true}\\)}catch\\(e\\){}\")",
+      "Bash(not exist *)",
+      "Bash(mkdir -p \"/mnt/c/Users/steve/OneDrive/Desktop/GaloDev/Codigo/.claude\")",
+      "Bash(copy \"C:\\\\Users\\\\steve\\\\Downloads\\\\logo_galodev.ico\" \"C:\\\\Users\\\\steve\\\\OneDrive\\\\Desktop\\\\GaloDev\\\\Codigo\\\\app\\\\favicon.ico\")",
+      "Bash(cp \"/mnt/c/Users/steve/Downloads/logo_galodev.ico\" \"/mnt/c/Users/steve/OneDrive/Desktop/GaloDev/Codigo/app/favicon.ico\" && echo ok)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(gh auth *)",
+      "Bash(git commit -m 'fix: hardcode AdSense script in <head> with beforeInteractive for crawler visibility *)",
+      "Bash(git push *)",
+      "Bash(git commit -m 'chore: update favicon.ico \\(OneDrive sync\\) *)",
+      "PowerShell(New-Item -ItemType Directory -Path \"C:\\\\Users\\\\steve\\\\OneDrive\\\\Desktop\\\\GaloDev\\\\Codigo\\\\docs\")",
+      "PowerShell(\"created\")"
     ]
   }
 }
