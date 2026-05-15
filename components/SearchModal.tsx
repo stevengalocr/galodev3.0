@@ -74,7 +74,7 @@ export default function SearchModal({ open, onClose }: Props) {
                   </div>
                   <div className="search-item-content">
                     <div className="search-item-title">{tool.name}</div>
-                    <div className="search-item-meta">{tool.category} · {tool.uses}</div>
+                    <div className="search-item-meta">{tool.category}</div>
                   </div>
                   <span className="search-arrow">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7" /></svg>

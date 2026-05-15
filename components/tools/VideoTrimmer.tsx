@@ -106,7 +106,9 @@ export default function VideoTrimmer() {
             background: 'var(--ink-3)',
           }}
         >
-          <div style={{ fontSize: 48, marginBottom: 16 }}>✂️</div>
+          <div style={{ color: 'var(--lime)', marginBottom: 16 }}>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12"/></svg>
+          </div>
           <p style={{ fontFamily: 'var(--font-serif)', fontSize: 22, marginBottom: 8 }}>Arrastra tu video aquí</p>
           <p style={{ color: 'var(--paper-mute)', fontSize: 14 }}>MP4, WebM, MOV, AVI — hasta 2GB</p>
           <button className="btn btn-glow btn-sm" style={{ marginTop: 20 }} onClick={(e) => { e.stopPropagation(); fileInputRef.current?.click(); }}>
@@ -130,10 +132,10 @@ export default function VideoTrimmer() {
           {/* Info */}
           <div style={{ display: 'flex', gap: 16, justifyContent: 'space-between', alignItems: 'center' }}>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--paper-mute)' }}>
-              📁 {videoFile.name} · {(videoFile.size / 1024 / 1024).toFixed(1)} MB · {formatTime(duration)}
+              {videoFile.name} · {(videoFile.size / 1024 / 1024).toFixed(1)} MB · {formatTime(duration)}
             </div>
             <button onClick={() => { setVideoFile(null); setVideoURL(''); setOutputURL(''); }} style={{ fontSize: 12, color: 'var(--paper-mute)', background: 'none', border: 'none', cursor: 'pointer' }}>
-              Cambiar video ✕
+              Cambiar video
             </button>
           </div>
 
@@ -190,11 +192,11 @@ export default function VideoTrimmer() {
           {/* Action */}
           {!loaded ? (
             <button onClick={load} disabled={loading} className="btn btn-glow" style={{ alignSelf: 'flex-start' }}>
-              {loading ? '⚙️ Cargando FFmpeg…' : '⚙️ Cargar motor de video'}
+              {loading ? 'Cargando motor de video…' : 'Cargar motor de video'}
             </button>
           ) : (
             <button onClick={trim} disabled={processing} className="btn btn-glow" style={{ alignSelf: 'flex-start' }}>
-              {processing ? `✂️ Recortando… ${progress}%` : '✂️ Recortar video'}
+              {processing ? `Recortando… ${progress}%` : 'Recortar video'}
             </button>
           )}
 
@@ -205,13 +207,13 @@ export default function VideoTrimmer() {
             </div>
           )}
 
-          {error && <p style={{ color: 'var(--rust)', fontSize: 14, fontFamily: 'var(--font-mono)' }}>⚠ {error}</p>}
+          {error && <p style={{ color: 'var(--rust)', fontSize: 14, fontFamily: 'var(--font-mono)' }}>{error}</p>}
 
           {/* Result */}
           {outputURL && (
             <div style={{ background: 'rgba(91,209,255,0.06)', border: '1px solid rgba(91,209,255,0.2)', borderRadius: 12, padding: 20, display: 'flex', flexDirection: 'column', gap: 12 }}>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--lime)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                ✓ Clip listo — {(outputSize / 1024 / 1024).toFixed(2)} MB
+                Clip listo — {(outputSize / 1024 / 1024).toFixed(2)} MB
               </div>
               <video src={outputURL} controls style={{ width: '100%', maxHeight: 240, borderRadius: 8, background: '#000' }} />
               <a
@@ -220,7 +222,7 @@ export default function VideoTrimmer() {
                 className="btn btn-glow"
                 style={{ alignSelf: 'flex-start' }}
               >
-                ⬇ Descargar clip
+                Descargar clip
               </a>
             </div>
           )}

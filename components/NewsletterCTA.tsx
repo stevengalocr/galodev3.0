@@ -33,7 +33,7 @@ export default function NewsletterCTA({ variant = 'light' }: Props) {
           {status === 'ok' ? (
             <div className="cta-actions">
               <span className="pill pill-lime" style={{ fontSize: 14, padding: '10px 20px' }}>
-                ✓ Apuntado — te avisamos el próximo viernes
+                Apuntado — te avisamos el próximo viernes
               </span>
             </div>
           ) : (

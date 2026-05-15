@@ -104,7 +104,7 @@ export default function Base64Tool() {
               {input.length} chars
             </span>
             <button onClick={clear} style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--paper-mute)', background: 'none', border: 'none', cursor: 'pointer', letterSpacing: '0.06em' }}>
-              Limpiar ✕
+              Limpiar
             </button>
           </div>
         </div>
@@ -161,7 +161,7 @@ export default function Base64Tool() {
               className="btn btn-glow btn-sm"
               style={{ opacity: output ? 1 : 0.4 }}
             >
-              {copied ? '✓ Copiado' : 'Copiar'}
+              {copied ? 'Copiado' : 'Copiar'}
             </button>
           </div>
         </div>

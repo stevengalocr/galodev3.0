@@ -113,7 +113,9 @@ export default function GifMaker() {
           onClick={() => fileInputRef.current?.click()}
           style={{ border: '2px dashed var(--line-2)', borderRadius: 16, padding: '60px 40px', textAlign: 'center', cursor: 'pointer', background: 'var(--ink-3)' }}
         >
-          <div style={{ fontSize: 48, marginBottom: 16 }}>🎞️</div>
+          <div style={{ color: 'var(--lime)', marginBottom: 16 }}>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M9 10h.01M15 10h.01M9 14h.01M15 14h.01M2 8h20M2 16h20"/></svg>
+          </div>
           <p style={{ fontFamily: 'var(--font-serif)', fontSize: 22, marginBottom: 8 }}>Arrastra tu video aquí</p>
           <p style={{ color: 'var(--paper-mute)', fontSize: 14 }}>MP4, WebM, MOV — recomendado clips cortos (&lt;30s)</p>
           <button className="btn btn-glow btn-sm" style={{ marginTop: 20 }}>Seleccionar archivo</button>
@@ -128,9 +130,9 @@ export default function GifMaker() {
 
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--paper-mute)' }}>
-              📁 {videoFile.name} · {formatTime(duration)} total
+              {videoFile.name} · {formatTime(duration)} total
             </span>
-            <button onClick={() => { setVideoFile(null); setOutputURL(''); }} style={{ fontSize: 12, color: 'var(--paper-mute)', background: 'none', border: 'none', cursor: 'pointer' }}>Cambiar ✕</button>
+            <button onClick={() => { setVideoFile(null); setOutputURL(''); }} style={{ fontSize: 12, color: 'var(--paper-mute)', background: 'none', border: 'none', cursor: 'pointer' }}>Cambiar</button>
           </div>
 
           {/* GIF Settings */}
@@ -155,7 +157,7 @@ export default function GifMaker() {
               </div>
               <input type="range" min={0.5} max={Math.min(15, duration - startTime)} step={0.5} value={clipDuration}
                 onChange={(e) => setClipDuration(Number(e.target.value))} style={{ width: '100%' }} />
-              {clipDuration > 8 && <p style={{ fontSize: 12, color: 'var(--rust)', marginTop: 4 }}>⚠ GIFs largos pueden ser muy pesados. Recomendado: &lt;8s</p>}
+              {clipDuration > 8 && <p style={{ fontSize: 12, color: 'var(--rust)', marginTop: 4 }}>GIFs largos pueden ser muy pesados. Recomendado: menos de 8s</p>}
             </div>
 
             {/* FPS */}
@@ -192,11 +194,11 @@ export default function GifMaker() {
           {/* Action */}
           {!loaded ? (
             <button onClick={load} disabled={loading} className="btn btn-glow" style={{ alignSelf: 'flex-start' }}>
-              {loading ? '⚙️ Cargando FFmpeg…' : '⚙️ Cargar motor de video'}
+              {loading ? 'Cargando motor de video…' : 'Cargar motor de video'}
             </button>
           ) : (
             <button onClick={makeGif} disabled={processing} className="btn btn-glow" style={{ alignSelf: 'flex-start' }}>
-              {processing ? `🎞️ Generando GIF… ${progress}%` : '🎞️ Crear GIF'}
+              {processing ? `Generando GIF… ${progress}%` : 'Crear GIF'}
             </button>
           )}
 
@@ -208,17 +210,17 @@ export default function GifMaker() {
             </div>
           )}
 
-          {error && <p style={{ color: 'var(--rust)', fontSize: 14 }}>⚠ {error}</p>}
+          {error && <p style={{ color: 'var(--rust)', fontSize: 14 }}>{error}</p>}
 
           {outputURL && (
             <div style={{ background: 'rgba(91,209,255,0.06)', border: '1px solid rgba(91,209,255,0.2)', borderRadius: 12, padding: 24, display: 'flex', flexDirection: 'column', gap: 12 }}>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--lime)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                ✓ GIF listo — {(outputSize / 1024).toFixed(0)} KB
+                GIF listo — {(outputSize / 1024).toFixed(0)} KB
               </div>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={outputURL} alt="GIF result" style={{ maxWidth: '100%', borderRadius: 8, border: '1px solid var(--line)' }} />
               <a href={outputURL} download={`${videoFile.name.replace(/\.[^.]+$/, '')}.gif`} className="btn btn-glow" style={{ alignSelf: 'flex-start' }}>
-                ⬇ Descargar GIF
+                Descargar GIF
               </a>
             </div>
           )}

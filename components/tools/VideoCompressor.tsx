@@ -5,9 +5,9 @@ import { fetchFile } from '@ffmpeg/util';
 import { useFFmpeg, ffmpegDataToBlob } from './useFFmpeg';
 
 const PRESETS = [
-  { label: 'Alta calidad', crf: 23, desc: '~50% menos, calidad casi idéntica', icon: '⭐' },
-  { label: 'Balanceado', crf: 28, desc: '~70% menos, ligera pérdida', icon: '⚖️' },
-  { label: 'Máxima compresión', crf: 35, desc: '~85% menos, web/mensajería', icon: '🗜️' },
+  { label: 'Alta calidad', crf: 23, desc: '~50% menos, calidad casi idéntica' },
+  { label: 'Balanceado', crf: 28, desc: '~70% menos, ligera pérdida' },
+  { label: 'Máxima compresión', crf: 35, desc: '~85% menos, web/mensajería' },
 ];
 
 export default function VideoCompressor() {
@@ -79,7 +79,12 @@ export default function VideoCompressor() {
           onClick={() => fileInputRef.current?.click()}
           style={{ border: '2px dashed var(--line-2)', borderRadius: 16, padding: '60px 40px', textAlign: 'center', cursor: 'pointer', background: 'var(--ink-3)' }}
         >
-          <div style={{ fontSize: 48, marginBottom: 16 }}>🗜️</div>
+          <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'center' }}>
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--lime)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+              <path d="M15 9H9v6h6V9z" />
+            </svg>
+          </div>
           <p style={{ fontFamily: 'var(--font-serif)', fontSize: 22, marginBottom: 8 }}>Arrastra tu video aquí</p>
           <p style={{ color: 'var(--paper-mute)', fontSize: 14 }}>MP4, WebM, MOV — hasta 2GB</p>
           <button className="btn btn-glow btn-sm" style={{ marginTop: 20 }}>Seleccionar archivo</button>
@@ -89,14 +94,14 @@ export default function VideoCompressor() {
         <>
           {/* File info */}
           <div style={{ display: 'flex', gap: 12, alignItems: 'center', padding: '14px 18px', background: 'var(--ink-3)', border: '1px solid var(--line)', borderRadius: 10 }}>
-            <span style={{ fontSize: 24 }}>🎬</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--lime)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m15 9-5-3v10l5-3-5 3" /><path d="m15 9 5-3v10l-5-3" /></svg>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 14, color: 'var(--paper)' }}>{videoFile.name}</div>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--paper-mute)', marginTop: 2 }}>
                 Tamaño original: <strong style={{ color: 'var(--paper)' }}>{(videoFile.size / 1024 / 1024).toFixed(2)} MB</strong>
               </div>
             </div>
-            <button onClick={() => { setVideoFile(null); setVideoURL(''); setOutputURL(''); }} style={{ color: 'var(--paper-mute)', background: 'none', border: 'none', cursor: 'pointer', fontSize: 18 }}>✕</button>
+            <button onClick={() => { setVideoFile(null); setVideoURL(''); setOutputURL(''); }} style={{ color: 'var(--paper-mute)', background: 'none', border: 'none', cursor: 'pointer', fontSize: 12 }}>Cambiar</button>
           </div>
 
           {/* Preset selector */}
@@ -113,7 +118,6 @@ export default function VideoCompressor() {
                     cursor: 'pointer', textAlign: 'left', transition: 'all 0.2s',
                   }}
                 >
-                  <div style={{ fontSize: 22, marginBottom: 6 }}>{p.icon}</div>
                   <div style={{ fontSize: 14, color: preset === i ? 'var(--lime)' : 'var(--paper)', fontWeight: preset === i ? 600 : 400, marginBottom: 4 }}>{p.label}</div>
                   <div style={{ fontSize: 12, color: 'var(--paper-mute)' }}>{p.desc}</div>
                 </button>
@@ -124,11 +128,11 @@ export default function VideoCompressor() {
           {/* Action */}
           {!loaded ? (
             <button onClick={load} disabled={loading} className="btn btn-glow" style={{ alignSelf: 'flex-start' }}>
-              {loading ? '⚙️ Cargando FFmpeg…' : '⚙️ Cargar motor de video'}
+              {loading ? 'Cargando motor de video…' : 'Cargar motor de video'}
             </button>
           ) : (
             <button onClick={compress} disabled={processing} className="btn btn-glow" style={{ alignSelf: 'flex-start' }}>
-              {processing ? `🗜️ Comprimiendo… ${progress}%` : '🗜️ Comprimir video'}
+              {processing ? `Comprimiendo… ${progress}%` : 'Comprimir video'}
             </button>
           )}
 
@@ -143,13 +147,13 @@ export default function VideoCompressor() {
             </div>
           )}
 
-          {error && <p style={{ color: 'var(--rust)', fontSize: 14 }}>⚠ {error}</p>}
+          {error && <p style={{ color: 'var(--rust)', fontSize: 14 }}>{error}</p>}
 
           {/* Result */}
           {outputURL && (
             <div style={{ background: 'rgba(91,209,255,0.06)', border: '1px solid rgba(91,209,255,0.2)', borderRadius: 12, padding: 24, display: 'flex', flexDirection: 'column', gap: 16 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--lime)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>✓ Compresión completada</span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--lime)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Compresión completada</span>
               </div>
               {/* Stats */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
@@ -166,7 +170,7 @@ export default function VideoCompressor() {
               </div>
               <video src={outputURL} controls style={{ width: '100%', maxHeight: 240, borderRadius: 8, background: '#000' }} />
               <a href={outputURL} download={`compressed_${videoFile.name.replace(/\.[^.]+$/, '')}.mp4`} className="btn btn-glow" style={{ alignSelf: 'flex-start' }}>
-                ⬇ Descargar video comprimido
+                Descargar video comprimido
               </a>
             </div>
           )}

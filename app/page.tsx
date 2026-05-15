@@ -23,9 +23,9 @@ const faqItems = [
 ];
 
 const marqueeItems = [
-  'Password Generator', 'JSON Formatter', 'Color Palette', 'QR Code Maker',
-  'Image Compressor', 'Markdown Editor', 'Lorem Ipsum', 'Unit Converter',
-  'Hash Generator', 'Base64 Encoder',
+  'Recortar Video', 'Comprimir Video', 'Crear GIF', 'Descargar Reels',
+  'Descargar TikTok', 'Codificar Base64', 'Generador de Contraseñas', 'Formato JSON',
+  'Paleta de Colores', 'Código QR', 'Comprimir Imagen', 'Editor Markdown',
 ];
 
 export default function HomePage() {
@@ -43,10 +43,7 @@ export default function HomePage() {
         }} />
         <div className="container">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
-            <span className="kicker">v1.0 · 48 tools live · sin registro, nunca</span>
-            <span className="live-counter">
-              <strong>2,847</strong>&nbsp;tools ejecutadas hoy
-            </span>
+            <span className="kicker">v1.0 · 13 herramientas · sin registro, nunca</span>
           </div>
 
           <h1 style={{
@@ -89,13 +86,13 @@ export default function HomePage() {
               </h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                 {[
-                  { name: 'Password Generator', uses: '812 usos · hoy' },
-                  { name: 'JSON Formatter', uses: '604 usos · hoy' },
-                  { name: 'Color Palette Builder', uses: '441 usos · hoy' },
-                  { name: 'QR Code Maker', uses: '389 usos · hoy' },
-                  { name: 'Image Compressor', uses: '312 usos · hoy' },
+                  { name: 'TikTok Downloader', cat: 'Social', slug: 'tiktok-downloader' },
+                  { name: 'Reels Downloader', cat: 'Social', slug: 'reels-downloader' },
+                  { name: 'Video Trimmer', cat: 'Video', slug: 'video-trimmer' },
+                  { name: 'Video Compressor', cat: 'Video', slug: 'video-compressor' },
+                  { name: 'GIF Maker', cat: 'Video', slug: 'gif-maker' },
                 ].map((item) => (
-                  <Link key={item.name} href="/tools" style={{
+                  <Link key={item.name} href={`/tools/${item.slug}`} style={{
                     display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                     padding: '8px 0', borderBottom: '1px solid var(--line)', fontSize: 14,
                     transition: 'color 0.2s var(--ease)',
@@ -103,7 +100,7 @@ export default function HomePage() {
                     className="hero-side-item"
                   >
                     <span>{item.name}</span>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--paper-mute)' }}>{item.uses}</span>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--lime)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>{item.cat}</span>
                   </Link>
                 ))}
               </div>
@@ -116,9 +113,9 @@ export default function HomePage() {
             position: 'relative', zIndex: 1,
           }}>
             {[
-              { num: '48', suf: '+', label: 'Tools publicadas' },
+              { num: '13', suf: '', label: 'Herramientas disponibles' },
               { num: '0', suf: '$', label: 'Para siempre, para todo' },
-              { num: '2.1', suf: 'M', label: 'Usos este mes' },
+              { num: '0', suf: '', label: 'Datos enviados a servidores' },
               { num: '100', suf: '%', label: 'Client-side, privado' },
             ].map((stat) => (
               <div key={stat.label} style={{ padding: '0 24px', borderRight: '1px solid var(--line)' }}
@@ -142,7 +139,7 @@ export default function HomePage() {
             <span key={rep} className="marquee-item">
               {marqueeItems.map((item, i) => (
                 <span key={i}>
-                  <span className="star">✦</span> {item}{i < marqueeItems.length - 1 && <span className="italic"> · </span>}
+                  <span className="star">/</span> {item}{i < marqueeItems.length - 1 && <span className="italic"> · </span>}
                 </span>
               ))}
             </span>
@@ -154,22 +151,13 @@ export default function HomePage() {
       <section>
         <div className="container">
           <div className="section-head">
-            <h2 className="section-head-title">Popular esta <span className="text-italic">semana.</span></h2>
-            <Link href="/tools" className="btn btn-ghost btn-sm">Ver todas las 48 →</Link>
+            <h2 className="section-head-title">Herramientas <span className="text-italic">disponibles.</span></h2>
+            <Link href="/tools" className="btn btn-glow btn-sm">
+              Ver todas las herramientas
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
+            </Link>
           </div>
 
-          <div className="cats">
-            {[
-              { label: 'Todos', count: 48 }, { label: 'Generadores', count: 12 },
-              { label: 'Conversores', count: 9 }, { label: 'Texto', count: 8 },
-              { label: 'Imagen', count: 7 }, { label: 'Color', count: 5 },
-              { label: 'Dev', count: 7 },
-            ].map((cat, i) => (
-              <span key={cat.label} className={`cat${i === 0 ? ' active' : ''}`}>
-                {cat.label} <span className="ct">{cat.count}</span>
-              </span>
-            ))}
-          </div>
 
           <div className="grid-tools">
             {featuredTools.map((tool) => <ToolCard key={tool.slug} tool={tool} />)}
@@ -193,7 +181,7 @@ export default function HomePage() {
             <em style={{ color: 'var(--lime)', fontStyle: 'italic' }}> email, mi alma</em>, y 14 anuncios antes de dejarme hacer clic.<span style={{ color: 'var(--paper-fade)' }}>&rdquo;</span>
           </p>
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--paper-mute)' }}>
-            — Galo, fundador · 1 persona, 48 tools, 0 rastreadores
+            — Galo, fundador · 1 persona, 13 herramientas, 0 rastreadores
           </span>
         </div>
       </div>
@@ -213,7 +201,7 @@ export default function HomePage() {
             </div>
             <div>
               {[
-                { n: '01', h: 'Todo corre en tu navegador.', p: 'Tus archivos nunca tocan un servidor. Cierra la pestaña, los datos desaparecen. La mayoría de los "conversores online" no pueden prometer eso. Nosotros sí — abre la pestaña de red y compruébalo.' },
+                { n: '01', h: 'Todo corre en tu navegador.', p: 'Tus archivos nunca tocan un servidor. Cierra la pestaña, los datos desaparecen. La mayoría de los "conversores online" no pueden prometer eso. GaloDev sí — abre la pestaña de red y compruébalo.' },
                 { n: '02', h: 'Un anuncio por página, máximo.', p: 'Sí, este sitio tiene anuncios — así es como se mantiene gratis. Pero verás uno, claramente etiquetado, nunca video con reproducción automática, nunca intersticiales. La herramienta es el producto.' },
                 { n: '03', h: 'Diseñado una vez, publicado cada día.', p: 'Cada herramienta usa el mismo sistema de diseño, así que una vez que aprendes una, las conoces todas. Nueva herramienta aproximadamente cada 5 días.' },
                 { n: '04', h: 'Open source donde importa.', p: 'El motor principal, el framework de herramientas, los tokens de diseño — todo con licencia MIT en GitHub. Fórkalo, cópialo, aprende de él.' },

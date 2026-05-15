@@ -7,7 +7,7 @@ import { tools, toolCategories } from '@/lib/tools';
 
 export const metadata: Metadata = {
   title: 'Herramientas web gratuitas — GaloDev',
-  description: '48 herramientas web gratuitas: generadores, conversores, herramientas de texto, imagen y color. Sin registro, sin rastreos, todo en tu navegador.',
+  description: 'Herramientas web gratuitas: video, social, generadores y más. Sin registro, sin rastreos, todo en tu navegador.',
 };
 
 export default function ToolsPage() {
@@ -17,7 +17,7 @@ export default function ToolsPage() {
       <section style={{ padding: '56px 0 32px', borderBottom: '1px solid var(--line)', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(91,209,255,0.15), transparent 60%)', top: -200, left: -100, filter: 'blur(40px)', pointerEvents: 'none' }} />
         <div className="container">
-          <span className="kicker" style={{ marginBottom: 24, display: 'inline-flex' }}>48 tools · todas gratis · sin registro</span>
+          <span className="kicker" style={{ marginBottom: 24, display: 'inline-flex' }}>13 herramientas · todas gratis · sin registro</span>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 32, alignItems: 'end' }}>
             <div>
               <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(48px, 7vw, 96px)', lineHeight: 0.94, letterSpacing: '-0.03em', marginTop: 16 }}>
@@ -27,9 +27,8 @@ export default function ToolsPage() {
                 Todo corre en tu navegador. Cero uploads a servidores. Cero rastreos. Abre DevTools y compruébalo.
               </p>
             </div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--paper-mute)', textAlign: 'right', lineHeight: 1.8 }}>
-              <div><strong style={{ color: 'var(--paper)', fontFamily: 'var(--font-serif)', fontSize: 22 }}>2,847</strong> usos hoy</div>
-              <div><strong style={{ color: 'var(--paper)', fontFamily: 'var(--font-serif)', fontSize: 22 }}>2.1M</strong> este mes</div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--lime)', textAlign: 'right' }}>
+              Gratis · Sin registro · Sin rastreo
             </div>
           </div>
         </div>
@@ -43,14 +42,8 @@ export default function ToolsPage() {
       {/* TOOLS GRID */}
       <section>
         <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32, flexWrap: 'wrap', gap: 16 }}>
-            <div className="cats">
-              {toolCategories.map((cat, i) => (
-                <span key={cat.label} className={`cat${i === 0 ? ' active' : ''}`}>
-                  {cat.label} <span className="ct">{cat.count}</span>
-                </span>
-              ))}
-            </div>
+          <div className="section-head" style={{ marginBottom: 32 }}>
+            <h2 className="section-head-title">Todas las <span className="text-italic">herramientas.</span></h2>
           </div>
 
           <div className="grid-tools">
@@ -66,10 +59,10 @@ export default function ToolsPage() {
           <div style={{ marginTop: 64, padding: '40px', border: '1px dashed var(--line-2)', borderRadius: 'var(--radius)', textAlign: 'center', background: 'var(--ink-2)' }}>
             <span className="kicker" style={{ justifyContent: 'center', marginBottom: 16, display: 'flex' }}>En construcción</span>
             <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(32px, 4vw, 52px)', letterSpacing: '-0.025em', marginBottom: 16 }}>
-              40 tools más <em style={{ color: 'var(--lime)' }}>llegando.</em>
+              Más herramientas <em style={{ color: 'var(--lime)' }}>en camino.</em>
             </h2>
             <p style={{ color: 'var(--paper-mute)', maxWidth: 480, margin: '0 auto 24px' }}>
-              Estamos construyendo la biblioteca completa. Suscríbete para recibir notificación cuando una nueva tool salga — cada viernes.
+              Seguimos construyendo la biblioteca. Suscríbete para recibir notificación cuando una nueva herramienta esté lista.
             </p>
             <SubscribeForm buttonLabel="Avísame" />
           </div>
@@ -112,12 +105,12 @@ export default function ToolsPage() {
           <div className="cta">
             <div className="cta-eyebrow">— Del creador</div>
             <h2 className="cta-title">Lee cómo se<br /><span className="text-italic">construyó esto.</span></h2>
-            <p className="cta-sub">De 4 tools a 48, de 0 a 2M de usuarios mensuales. El proceso, los números y lo que casi lo mató.</p>
+            <p className="cta-sub">El proceso de construir herramientas reales, las decisiones técnicas y lo que aprendimos en el camino.</p>
             <div className="cta-actions">
               <Link href="/blog" className="btn btn-glow">
                 Leer el blog →
               </Link>
-              <Link href="/about" className="btn btn-ghost">About</Link>
+              <Link href="/about" className="btn btn-ghost">Sobre nosotros →</Link>
             </div>
           </div>
         </div>

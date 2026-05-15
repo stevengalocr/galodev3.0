@@ -59,16 +59,10 @@ export default async function ToolPage({ params }: Props) {
           <p style={{ fontSize: 18, color: 'var(--paper-dim)', maxWidth: 600, marginTop: 16 }}>{tool.desc}</p>
         </div>
         <div style={{
-          fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.08em',
-          textTransform: 'uppercase', color: 'var(--paper-mute)', textAlign: 'right',
-          display: 'flex', flexDirection: 'column', gap: 12,
+          fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.1em',
+          textTransform: 'uppercase', color: 'var(--lime)', textAlign: 'right',
         }}>
-          <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end', alignItems: 'center' }}>
-            <span>Usos hoy</span>
-            <span style={{ color: 'var(--paper)', fontFamily: 'var(--font-serif)', fontSize: 22 }}>
-              {tool.uses.replace(' hoy', '')}
-            </span>
-          </div>
+          Gratis · Sin registro
         </div>
       </header>
 
