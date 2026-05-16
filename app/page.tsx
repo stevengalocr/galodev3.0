@@ -80,10 +80,10 @@ export default function HomePage() {
               display: 'flex', flexDirection: 'column', gap: 18, padding: 24,
               border: '1px solid var(--line)', borderRadius: 'var(--radius)', background: 'var(--ink-2)',
             }}>
-              <h4 style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--paper-mute)', fontWeight: 500, display: 'flex', alignItems: 'center', gap: 8 }}>
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--paper-mute)', fontWeight: 500, display: 'flex', alignItems: 'center', gap: 8 }}>
                 <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--lime)', boxShadow: '0 0 8px var(--lime)', display: 'inline-block' }} />
                 Trending ahora
-              </h4>
+              </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                 {[
                   { name: 'TikTok Downloader', cat: 'Social', slug: 'tiktok-downloader' },

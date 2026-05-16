@@ -97,7 +97,7 @@ export default function ToolsPage() {
               ].map((step, i) => (
                 <li key={i} style={{ counterIncrement: 'step', padding: '20px 0 20px 56px', borderBottom: '1px solid var(--line)', position: 'relative' }}>
                   <span style={{ position: 'absolute', left: 0, top: 24, fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--lime)', letterSpacing: '0.06em' }}>0{i + 1}</span>
-                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: 22, letterSpacing: '-0.01em', marginBottom: 6, fontWeight: 400 }}>{step.h}</h4>
+                  <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: 22, letterSpacing: '-0.01em', marginBottom: 6, fontWeight: 400 }}>{step.h}</h3>
                   <p style={{ fontSize: 14, color: 'var(--paper-mute)' }}>{step.p}</p>
                 </li>
               ))}

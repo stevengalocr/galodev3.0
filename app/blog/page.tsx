@@ -151,7 +151,7 @@ export default function BlogPage() {
 
             {/* Follow box */}
             <div className="newsletter-inline">
-              <h4>Construido en <span className="italic">público.</span></h4>
+              <h3>Construido en <span className="italic">público.</span></h3>
               <p>Síguenos en GitHub o escríbenos por WhatsApp para sugerencias.</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 12 }}>
                 <a href="https://github.com/stevengalocr" target="_blank" rel="noopener noreferrer" className="btn btn-glow btn-sm">

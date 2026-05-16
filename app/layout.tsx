@@ -1,13 +1,27 @@
 import type { Metadata } from 'next';
 import { GeistSans } from 'geist/font/sans';
+import { Instrument_Serif, JetBrains_Mono } from 'next/font/google';
 import Script from 'next/script';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import './globals.css';
 
-// Note: Instrument Serif + JetBrains Mono are loaded via CSS @import in globals.css
-// to avoid build-time network dependency. CSS variables --font-serif and --font-mono
-// are defined in :root in globals.css.
+const instrumentSerif = Instrument_Serif({
+  weight: '400',
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-serif',
+  preload: true,
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  weight: ['400', '500'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mono',
+  preload: false,
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://galodev.com'),
@@ -55,14 +69,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="es"
-      className={GeistSans.variable}
+      className={`${GeistSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
     >
       <head>
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8417467581385725"
           crossOrigin="anonymous"
-          strategy="beforeInteractive"
+          strategy="afterInteractive"
         />
         {gaId && (
           <>
