@@ -39,9 +39,7 @@ export default function Footer() {
               <li><Link href="/tools/video-trimmer">Recortar Video</Link></li>
               <li><Link href="/tools/video-compressor">Comprimir Video</Link></li>
               <li><Link href="/tools/gif-maker">Crear GIF</Link></li>
-              <li><Link href="/tools/reels-downloader">Descargar Reels</Link></li>
-              <li><Link href="/tools/tiktok-downloader">Descargar TikTok</Link></li>
-              <li><Link href="/tools/base64">Base64</Link></li>
+              <li><Link href="/tools/base64">Base64 Tool</Link></li>
               <li><Link href="/tools">Todas →</Link></li>
             </ul>
           </div>

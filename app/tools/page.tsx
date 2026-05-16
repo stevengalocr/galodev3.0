@@ -79,7 +79,7 @@ export default function ToolsPage() {
       {/* HOW IT WORKS */}
       <section style={{ borderTop: '1px solid var(--line)', background: 'var(--ink-2)' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64 }} className="why">
+          <div className="why">
             <div>
               <span className="kicker" style={{ marginBottom: 24, display: 'inline-flex' }}>Cómo funciona</span>
               <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(36px, 4.5vw, 60px)', lineHeight: 0.96, letterSpacing: '-0.025em', marginBottom: 24, marginTop: 16 }}>

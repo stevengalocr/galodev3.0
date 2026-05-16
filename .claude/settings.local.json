@@ -24,7 +24,18 @@
       "Bash(git push *)",
       "Bash(git commit -m 'chore: update favicon.ico \\(OneDrive sync\\) *)",
       "PowerShell(New-Item -ItemType Directory -Path \"C:\\\\Users\\\\steve\\\\OneDrive\\\\Desktop\\\\GaloDev\\\\Codigo\\\\docs\")",
-      "PowerShell(\"created\")"
+      "PowerShell(\"created\")",
+      "Bash(git checkout *)",
+      "Bash(git pull *)",
+      "Bash(git merge *)",
+      "Bash(git stash *)",
+      "Bash(git commit -m 'feat: add Google Search Console verification meta tag *)",
+      "Bash(mkdir -p \"C:\\\\Users\\\\steve\\\\OneDrive\\\\Desktop\\\\GaloDev\\\\galodev-downloaders\\\\app\\\\api\\\\download\\\\proxy\" \"C:\\\\Users\\\\steve\\\\OneDrive\\\\Desktop\\\\GaloDev\\\\galodev-downloaders\\\\components\\\\tools\" \"C:\\\\Users\\\\steve\\\\OneDrive\\\\Desktop\\\\GaloDev\\\\galodev-downloaders\\\\lib\")",
+      "Bash(Copy-Item \"C:\\\\Users\\\\steve\\\\OneDrive\\\\Desktop\\\\GaloDev\\\\Codigo\\\\app\\\\api\\\\download\\\\route.ts\" \"C:\\\\Users\\\\steve\\\\OneDrive\\\\Desktop\\\\GaloDev\\\\galodev-downloaders\\\\app\\\\api\\\\download\\\\route.ts\")",
+      "Bash(Copy-Item \"C:\\\\Users\\\\steve\\\\OneDrive\\\\Desktop\\\\GaloDev\\\\Codigo\\\\app\\\\api\\\\download\\\\proxy\\\\route.ts\" \"C:\\\\Users\\\\steve\\\\OneDrive\\\\Desktop\\\\GaloDev\\\\galodev-downloaders\\\\app\\\\api\\\\download\\\\proxy\\\\route.ts\")",
+      "Bash(Copy-Item \"C:\\\\Users\\\\steve\\\\OneDrive\\\\Desktop\\\\GaloDev\\\\Codigo\\\\components\\\\tools\\\\SocialDownloader.tsx\" \"C:\\\\Users\\\\steve\\\\OneDrive\\\\Desktop\\\\GaloDev\\\\galodev-downloaders\\\\components\\\\tools\\\\SocialDownloader.tsx\")",
+      "Bash(Copy-Item \"C:\\\\Users\\\\steve\\\\OneDrive\\\\Desktop\\\\GaloDev\\\\Codigo\\\\components\\\\tools\\\\ReelsDownloader.tsx\" \"C:\\\\Users\\\\steve\\\\OneDrive\\\\Desktop\\\\GaloDev\\\\galodev-downloaders\\\\components\\\\tools\\\\ReelsDownloader.tsx\")",
+      "Bash(Copy-Item \"C:\\\\Users\\\\steve\\\\OneDrive\\\\Desktop\\\\GaloDev\\\\Codigo\\\\components\\\\tools\\\\TikTokDownloader.tsx\" \"C:\\\\Users\\\\steve\\\\OneDrive\\\\Desktop\\\\GaloDev\\\\galodev-downloaders\\\\components\\\\tools\\\\TikTokDownloader.tsx\")"
     ]
   }
 }

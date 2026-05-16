@@ -8,8 +8,6 @@ const TOOLS: Record<string, React.ComponentType> = {
   'video-trimmer': dynamic(() => import('./VideoTrimmer'), { ssr: false }),
   'video-compressor': dynamic(() => import('./VideoCompressor'), { ssr: false }),
   'gif-maker': dynamic(() => import('./GifMaker'), { ssr: false }),
-  'reels-downloader': dynamic(() => import('./ReelsDownloader'), { ssr: false }),
-  'tiktok-downloader': dynamic(() => import('./TikTokDownloader'), { ssr: false }),
 };
 
 function LoadingState() {

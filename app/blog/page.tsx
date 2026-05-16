@@ -41,7 +41,7 @@ export default function BlogPage() {
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--paper-mute)', textAlign: 'right', lineHeight: 1.7 }}>
               <div><strong style={{ color: 'var(--paper)' }}>{articles.length} artículos</strong> · desde 2025</div>
               <div>IA, herramientas, monetización y desarrollo web</div>
-              <div style={{ marginTop: 12 }}><strong style={{ color: 'var(--paper)' }}>Issue {articles.length}</strong> · Mayo 2025</div>
+              <div style={{ marginTop: 12 }}><strong style={{ color: 'var(--paper)' }}>Issue {articles.length}</strong> · Mayo 2026</div>
             </div>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 16, borderTop: '1px solid var(--line)', fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--paper-mute)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
@@ -49,6 +49,11 @@ export default function BlogPage() {
             <span>Todos los artículos · más recientes primero</span>
           </div>
         </header>
+      </div>
+
+      {/* LEADERBOARD AD */}
+      <div className="container" style={{ paddingTop: 24, paddingBottom: 8 }}>
+        <AdBlock format="leaderboard" slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_LEADERBOARD} />
       </div>
 
       {/* FEATURED — latest article */}

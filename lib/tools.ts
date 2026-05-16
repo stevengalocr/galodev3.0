@@ -82,40 +82,6 @@ export const tools: Tool[] = [
     },
   },
   {
-    slug: 'reels-downloader',
-    name: 'Reels Downloader',
-    category: 'Social',
-    desc: 'Descarga Reels de Instagram en alta calidad. Pega el enlace y descarga al instante, sin apps ni extensiones.',
-    icon: 'instagram',
-    seoText: {
-      what: 'El Reels Downloader de GaloDev te permite descargar Reels de Instagram en alta calidad directamente desde tu navegador. Sin instalar apps, sin extensiones, sin crear cuenta. Solo pegás el enlace del Reel y descargás el video en segundos. Funciona desde computadora, tablet y celular.',
-      how: 'Copiá el enlace del Reel de Instagram (el ícono de "Compartir" → "Copiar enlace"), pegalo en el campo de esta herramienta y hacé clic en "Descargar". El video se descarga en la calidad original publicada.',
-      faqs: [
-        { q: '¿Funciona con cuentas privadas?', a: 'No. Solo podés descargar Reels de cuentas públicas. Los Reels de cuentas privadas requieren autenticación que esta herramienta no solicita para proteger tu privacidad.' },
-        { q: '¿La descarga incluye el audio?', a: 'Sí, el video se descarga con el audio original incluido.' },
-        { q: '¿Puedo descargar Reels desde el celular?', a: 'Sí. Abrí galodev.com desde el navegador de tu celular, pegá el enlace y el video se descarga directamente a tu galería.' },
-        { q: '¿Es legal descargar Reels de Instagram?', a: 'Descargar para uso personal es generalmente aceptado. No está permitido redistribuir el contenido de otros creadores sin su autorización. Respetá los derechos de autor.' },
-      ],
-    },
-  },
-  {
-    slug: 'tiktok-downloader',
-    name: 'TikTok Downloader',
-    category: 'Social',
-    desc: 'Descarga videos de TikTok sin marca de agua. Solo pega el enlace y descarga en segundos.',
-    icon: 'tiktok',
-    seoText: {
-      what: 'El TikTok Downloader de GaloDev descarga videos de TikTok sin marca de agua directamente en tu navegador. Sin apps adicionales, sin registrarte, sin límites de descargas. Solo pegás el enlace del video y en segundos tenés el archivo en tu dispositivo.',
-      how: 'Abrí el video en TikTok, tocá "Compartir" y copiá el enlace. Pegalo en el campo de esta herramienta y hacé clic en "Descargar". El video se descarga sin la marca de agua del logo de TikTok.',
-      faqs: [
-        { q: '¿Por qué descargar sin marca de agua?', a: 'Si querés reutilizar el contenido en otras plataformas como Instagram o WhatsApp, la marca de agua de TikTok puede verse poco profesional. Esta herramienta descarga el video limpio.' },
-        { q: '¿Funciona con videos de cuentas privadas?', a: 'No. Solo podés descargar videos de cuentas públicas. Los videos privados requieren autenticación.' },
-        { q: '¿Puedo descargarlo desde el celular?', a: 'Sí. Abrí galodev.com desde cualquier navegador móvil, pegá el enlace y el video se guarda directamente en tu galería.' },
-        { q: '¿El video pierde calidad al descargarlo?', a: 'No. Se descarga en la calidad original con la que fue subido a TikTok.' },
-      ],
-    },
-  },
-  {
     slug: 'password-generator',
     name: 'Password Generator',
     category: 'Generadores',
@@ -174,13 +140,13 @@ export const tools: Tool[] = [
 ];
 
 export const toolCategories = [
-  { label: 'Todos', count: 13 },
+  { label: 'Todos', count: 11 },
   { label: 'Video', count: 3 },
-  { label: 'Social', count: 2 },
   { label: 'Dev', count: 2 },
   { label: 'Generadores', count: 2 },
   { label: 'Imagen', count: 1 },
   { label: 'Texto', count: 1 },
+  { label: 'Conversores', count: 1 },
 ];
 
 export function getToolBySlug(slug: string): Tool | undefined {

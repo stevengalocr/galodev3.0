@@ -7,6 +7,7 @@ import ToolCard from '@/components/ToolCard';
 
 import ToolRenderer from '@/components/tools/ToolRenderer';
 import { hasImplementation } from '@/lib/toolsImpl';
+import ToolSchema from '@/components/ToolSchema';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -32,7 +33,21 @@ export default async function ToolPage({ params }: Props) {
   const related = tools.filter((t) => t.slug !== slug).slice(0, 4);
   const implemented = hasImplementation(slug);
 
+  const toolUrl = `https://galodev.com/tools/${slug}`;
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://galodev.com' },
+      { '@type': 'ListItem', position: 2, name: 'Herramientas', item: 'https://galodev.com/tools' },
+      { '@type': 'ListItem', position: 3, name: tool.name, item: toolUrl },
+    ],
+  };
+
   return (
+    <>
+      <ToolSchema tool={tool} url={toolUrl} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
     <div className="container">
       {/* BREADCRUMB */}
       <div style={{
@@ -70,7 +85,7 @@ export default async function ToolPage({ params }: Props) {
       <AdBlock format="leaderboard" slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_LEADERBOARD} style={{ marginBottom: 32 }} />
 
       {/* TOOL AREA */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: 32, paddingBottom: 64 }}>
+      <div className="tool-layout">
         <div>
           {/* Tool surface */}
           <div style={{
@@ -209,5 +224,6 @@ export default async function ToolPage({ params }: Props) {
         </div>
       </section>
     </div>
+    </>
   );
 }

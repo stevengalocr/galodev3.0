@@ -41,6 +41,16 @@ export default async function ArticlePage({ params }: Props) {
 
   const related = articles.filter((a) => a.slug !== article.slug).slice(0, 3);
 
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://galodev.com' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://galodev.com/blog' },
+      { '@type': 'ListItem', position: 3, name: article.title, item: `https://galodev.com/blog/${slug}` },
+    ],
+  };
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -54,6 +64,7 @@ export default async function ArticlePage({ params }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
 
       {/* READING PROGRESS + HERO */}
       <ReadingProgress />
@@ -103,7 +114,7 @@ export default async function ArticlePage({ params }: Props) {
 
       {/* BODY */}
       <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: '220px 1fr 280px', gap: 56, padding: '64px 0' }} className="a-body">
+        <div className="a-body">
 
           {/* TOC */}
           <ArticleTOC toc={article.toc} />
