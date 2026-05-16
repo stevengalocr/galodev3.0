@@ -17,6 +17,7 @@ export type Article = {
   toc: TocItem[];
   prev?: { slug: string; title: string; category: string; readTime: string };
   next?: { slug: string; title: string; category: string; readTime: string };
+  relatedSlugs?: string[];
 };
 
 export const articles: Article[] = [
@@ -384,6 +385,7 @@ export const articles: Article[] = [
   },
 
   {
+    relatedSlugs: ['claude-vs-chatgpt', 'grok-vs-gemini', 'que-es-nextjs'],
     slug: 'ia-generativa-explicado-facil',
     title: 'IA Generativa explicada fácil: guía completa 2025 — GaloDev',
     headline: 'IA Generativa explicada fácil: qué es, cómo funciona y cómo usarla hoy.',
@@ -780,6 +782,7 @@ export const articles: Article[] = [
   },
 
   {
+    relatedSlugs: ['formatear-validar-json-online', 'api-rest-nodejs', 'herramientas-gratis-desarrolladores-2026'],
     slug: 'que-es-base64',
     title: '¿Qué es Base64 y para qué sirve? Guía completa — GaloDev',
     headline: '¿Qué es Base64 y para qué sirve? La guía que necesitabas.',
@@ -871,6 +874,7 @@ export const articles: Article[] = [
   },
 
   {
+    relatedSlugs: ['que-es-base64', 'herramientas-gratis-desarrolladores-2026', 'formatear-validar-json-online'],
     slug: 'optimizar-videos-sin-perder-calidad',
     title: 'Cómo optimizar videos sin perder calidad: guía completa 2025 — GaloDev',
     headline: 'Cómo optimizar videos sin perder calidad: compresión, recorte y GIF.',
@@ -965,6 +969,7 @@ export const articles: Article[] = [
   },
 
   {
+    relatedSlugs: ['api-rest-nodejs', 'desplegar-con-vercel', 'herramientas-gratis-desarrolladores-2026'],
     slug: 'que-es-docker',
     title: '¿Qué es Docker? Guía completa para principiantes 2025 — GaloDev',
     headline: '¿Qué es Docker? La guía que lo explica de verdad.',
@@ -1287,6 +1292,7 @@ export const articles: Article[] = [
   },
 
   {
+    relatedSlugs: ['nextjs-en-vercel', 'desplegar-con-vercel', 'angular-vs-react-vs-nextjs'],
     slug: 'que-es-nextjs',
     title: '¿Qué es Next.js? La guía definitiva 2025 — GaloDev',
     headline: '¿Qué es Next.js? La guía definitiva para entenderlo de verdad.',
