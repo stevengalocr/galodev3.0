@@ -4,14 +4,24 @@ import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 
 const TOOLS: Record<string, React.ComponentType> = {
-  'base64': dynamic(() => import('./Base64Tool'), { ssr: false }),
-  'video-trimmer': dynamic(() => import('./VideoTrimmer'), { ssr: false }),
-  'video-compressor': dynamic(() => import('./VideoCompressor'), { ssr: false }),
-  'gif-maker': dynamic(() => import('./GifMaker'), { ssr: false }),
+  // Developer tools
+  'json-formatter':     dynamic(() => import('./JsonFormatter'),     { ssr: false }),
+  'base64':             dynamic(() => import('./Base64Tool'),         { ssr: false }),
   'password-generator': dynamic(() => import('./PasswordGenerator'), { ssr: false }),
-  'json-formatter': dynamic(() => import('./JsonFormatter'), { ssr: false }),
-  'color-palette': dynamic(() => import('./PaletteBuilder'), { ssr: false }),
-  'qr-code-maker': dynamic(() => import('./QrCodeMaker'), { ssr: false }),
+  'regex-tester':       dynamic(() => import('./RegexTester'),       { ssr: false }),
+  'jwt-decoder':        dynamic(() => import('./JwtDecoder'),        { ssr: false }),
+  'uuid-generator':     dynamic(() => import('./UuidGenerator'),     { ssr: false }),
+  'markdown-previewer': dynamic(() => import('./MarkdownPreviewer'), { ssr: false }),
+  // Productivity
+  'pomodoro-timer':     dynamic(() => import('./PomodoroTimer'),     { ssr: false }),
+  'quick-notes':        dynamic(() => import('./QuickNotes'),        { ssr: false }),
+  'focus-mode':         dynamic(() => import('./FocusMode'),         { ssr: false }),
+  // Utilities
+  'qr-code-maker':      dynamic(() => import('./QrCodeMaker'),      { ssr: false }),
+  'image-compressor':   dynamic(() => import('./ImageCompressor'),  { ssr: false }),
+  'unit-converter':     dynamic(() => import('./UnitConverter'),     { ssr: false }),
+  'color-converter':    dynamic(() => import('./ColorConverter'),    { ssr: false }),
+  'url-encoder':        dynamic(() => import('./UrlEncoder'),        { ssr: false }),
 };
 
 function LoadingState() {
@@ -30,18 +40,14 @@ function LoadingState() {
   );
 }
 
-interface Props {
-  slug: string;
-}
+interface Props { slug: string }
 
 export default function ToolRenderer({ slug }: Props) {
   const Tool = TOOLS[slug];
   if (!Tool) return null;
-
   return (
     <Suspense fallback={<LoadingState />}>
       <Tool />
     </Suspense>
   );
 }
-
