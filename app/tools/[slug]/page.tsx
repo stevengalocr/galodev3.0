@@ -161,6 +161,43 @@ export default async function ToolPage({ params }: Props) {
         </aside>
       </div>
 
+      {/* SEO TEXT SECTION */}
+      {tool.seoText && (
+        <section style={{ borderTop: '1px solid var(--line)', padding: '56px 0' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'start' }} className="why">
+            <div>
+              <span className="kicker" style={{ marginBottom: 16, display: 'inline-flex' }}>¿Qué es?</span>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(28px, 3vw, 42px)', lineHeight: 1.05, letterSpacing: '-0.02em', margin: '16px 0 20px' }}>
+                Todo sobre el <em style={{ color: 'var(--lime)' }}>{tool.name}.</em>
+              </h2>
+              <p style={{ fontSize: 16, color: 'var(--paper-dim)', lineHeight: 1.75 }}>{tool.seoText.what}</p>
+
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: 24, letterSpacing: '-0.01em', margin: '36px 0 12px', color: 'var(--paper)' }}>
+                Cómo usarlo
+              </h3>
+              <p style={{ fontSize: 16, color: 'var(--paper-dim)', lineHeight: 1.75 }}>{tool.seoText.how}</p>
+            </div>
+
+            <div>
+              <span className="kicker" style={{ marginBottom: 16, display: 'inline-flex' }}>Preguntas frecuentes</span>
+              <div style={{ marginTop: 16 }}>
+                {tool.seoText.faqs.map((faq, i) => (
+                  <div key={i} style={{
+                    borderBottom: '1px solid var(--line)', padding: '20px 0',
+                  }}>
+                    <h3 style={{
+                      fontFamily: 'var(--font-serif)', fontSize: 18, letterSpacing: '-0.01em',
+                      color: 'var(--paper)', marginBottom: 8, fontWeight: 400,
+                    }}>{faq.q}</h3>
+                    <p style={{ fontSize: 15, color: 'var(--paper-mute)', lineHeight: 1.65, margin: 0 }}>{faq.a}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* RELATED TOOLS STRIP */}
       <section style={{ borderTop: '1px solid var(--line)', padding: '56px 0' }}>
         <div className="section-head">

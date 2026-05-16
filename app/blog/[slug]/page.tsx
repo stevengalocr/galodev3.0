@@ -5,6 +5,8 @@ import { getArticleBySlug, getAllSlugs, articles } from '@/lib/articles';
 import AdBlock from '@/components/AdBlock';
 import ArticleCard from '@/components/ArticleCard';
 import ArticleTOC from '@/components/ArticleTOC';
+import RelatedArticles from '@/components/RelatedArticles';
+import ShareButton from '@/components/ShareButton';
 
 
 type Props = { params: Promise<{ slug: string }> };
@@ -87,10 +89,7 @@ export default async function ArticlePage({ params }: Props) {
             </div>
             <div style={{ flex: 1 }} />
             <div style={{ display: 'flex', gap: 8 }}>
-              <button className="btn btn-dark btn-sm">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.82 3.98" /></svg>
-                Compartir
-              </button>
+              <ShareButton title={article.title} url={`https://galodev.com/blog/${slug}`} />
             </div>
           </div>
 
@@ -127,6 +126,8 @@ export default async function ArticlePage({ params }: Props) {
                 Apoya el proyecto · $3
               </Link>
             </div>
+
+            <RelatedArticles currentSlug={article.slug} category={article.category} relatedSlugs={article.relatedSlugs} />
 
             <AdBlock format="skyscraper" slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_SKYSCRAPER} />
           </aside>
