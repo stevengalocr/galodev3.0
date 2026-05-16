@@ -8,6 +8,10 @@ const TOOLS: Record<string, React.ComponentType> = {
   'video-trimmer': dynamic(() => import('./VideoTrimmer'), { ssr: false }),
   'video-compressor': dynamic(() => import('./VideoCompressor'), { ssr: false }),
   'gif-maker': dynamic(() => import('./GifMaker'), { ssr: false }),
+  'password-generator': dynamic(() => import('./PasswordGenerator'), { ssr: false }),
+  'json-formatter': dynamic(() => import('./JsonFormatter'), { ssr: false }),
+  'color-palette': dynamic(() => import('./PaletteBuilder'), { ssr: false }),
+  'qr-code-maker': dynamic(() => import('./QrCodeMaker'), { ssr: false }),
 };
 
 function LoadingState() {
