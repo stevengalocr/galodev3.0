@@ -51,7 +51,7 @@ export default function HomePage() {
             lineHeight: 0.88, letterSpacing: '-0.04em', position: 'relative', zIndex: 1,
           }}>
             Herramientas<br />
-            que parecen <em style={{ fontStyle: 'italic', color: 'var(--lime)' }}>de pago.</em>
+            que ayudan <em style={{ fontStyle: 'italic', color: 'var(--lime)' }}>a todos.</em>
           </h1>
 
           <div style={{
