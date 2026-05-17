@@ -42,9 +42,9 @@ export default function BlogFilter({ articles }: Props) {
                   padding: '7px 14px', borderRadius: 999, cursor: 'pointer',
                   fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.06em',
                   border: '1px solid',
-                  borderColor: active === label ? 'var(--lime)' : 'var(--line)',
-                  background: active === label ? 'rgba(130,230,0,0.10)' : 'var(--ink-3)',
-                  color: active === label ? 'var(--lime)' : 'var(--paper-mute)',
+                  borderColor: active === label ? 'rgba(232,238,250,0.35)' : 'var(--line)',
+                  background: active === label ? 'rgba(232,238,250,0.07)' : 'var(--ink-3)',
+                  color: active === label ? 'var(--paper)' : 'var(--paper-mute)',
                   fontWeight: active === label ? 600 : 400,
                   transition: 'all 0.18s',
                 }}
@@ -52,8 +52,8 @@ export default function BlogFilter({ articles }: Props) {
                 {label}
                 <span style={{
                   padding: '1px 6px', borderRadius: 999, fontSize: 10,
-                  background: active === label ? 'rgba(130,230,0,0.18)' : 'var(--ink-2)',
-                  color: active === label ? 'var(--lime)' : 'var(--paper-fade)',
+                  background: active === label ? 'rgba(232,238,250,0.12)' : 'var(--ink-2)',
+                  color: active === label ? 'var(--paper-dim)' : 'var(--paper-fade)',
                 }}>{count}</span>
               </button>
             ))}
@@ -163,8 +163,8 @@ export default function BlogFilter({ articles }: Props) {
                   <button key={label} onClick={() => setActive(label)} style={{
                     display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                     width: '100%', padding: '9px 12px', borderRadius: 8, fontSize: 13,
-                    background: active === label ? 'rgba(130,230,0,0.08)' : 'none',
-                    color: active === label ? 'var(--lime)' : 'var(--paper-dim)',
+                    background: active === label ? 'rgba(232,238,250,0.07)' : 'none',
+                    color: active === label ? 'var(--paper)' : 'var(--paper-dim)',
                     border: 'none', cursor: 'pointer', transition: 'background 0.15s', textAlign: 'left',
                   }}>
                     <span>{label}</span>

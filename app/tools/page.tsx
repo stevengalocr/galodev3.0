@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import ToolCard from '@/components/ToolCard';
 import AdBlock from '@/components/AdBlock';
+import ToolsFilter from '@/components/ToolsFilter';
 
-import { tools, toolCategories } from '@/lib/tools';
+import { tools } from '@/lib/tools';
 
 export const metadata: Metadata = {
   title: 'Herramientas web gratuitas — GaloDev',
@@ -17,7 +17,7 @@ export default function ToolsPage() {
       <section style={{ padding: '56px 0 32px', borderBottom: '1px solid var(--line)', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(91,209,255,0.15), transparent 60%)', top: -200, left: -100, filter: 'blur(40px)', pointerEvents: 'none' }} />
         <div className="container">
-          <span className="kicker" style={{ marginBottom: 24, display: 'inline-flex' }}>13 herramientas · todas gratis · sin registro</span>
+          <span className="kicker" style={{ marginBottom: 24, display: 'inline-flex' }}>15 herramientas · todas gratis · sin registro</span>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 32, alignItems: 'end' }}>
             <div>
               <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(48px, 7vw, 96px)', lineHeight: 0.94, letterSpacing: '-0.03em', marginTop: 16 }}>
@@ -39,42 +39,13 @@ export default function ToolsPage() {
         <AdBlock format="leaderboard" slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_LEADERBOARD} />
       </div>
 
-      {/* TOOLS GRID */}
-      <section>
-        <div className="container">
-          <div className="section-head" style={{ marginBottom: 32 }}>
-            <h2 className="section-head-title">Todas las <span className="text-italic">herramientas.</span></h2>
-          </div>
+      {/* FILTER + TOOLS */}
+      <ToolsFilter tools={tools} />
 
-          <div className="grid-tools">
-            {tools.map((tool) => <ToolCard key={tool.slug} tool={tool} />)}
-          </div>
-
-          {/* IN-CONTENT AD */}
-          <div style={{ marginTop: 40 }}>
-            <AdBlock format="inline" slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_INLINE} />
-          </div>
-
-          {/* COMING SOON NOTICE */}
-          <div style={{ marginTop: 64, padding: '40px', border: '1px dashed var(--line-2)', borderRadius: 'var(--radius)', textAlign: 'center', background: 'var(--ink-2)' }}>
-            <span className="kicker" style={{ justifyContent: 'center', marginBottom: 16, display: 'flex' }}>En construcción</span>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(32px, 4vw, 52px)', letterSpacing: '-0.025em', marginBottom: 16 }}>
-              Más herramientas <em style={{ color: 'var(--lime)' }}>en camino.</em>
-            </h2>
-            <p style={{ color: 'var(--paper-mute)', maxWidth: 480, margin: '0 auto 24px' }}>
-              ¿Tienes una sugerencia? Escríbenos directamente o abre un issue en GitHub.
-            </p>
-            <div style={{ display: 'inline-flex', gap: 12 }}>
-              <a href="https://wa.me/50672874779" target="_blank" rel="noopener noreferrer" className="btn btn-glow">
-                WhatsApp
-              </a>
-              <a href="https://github.com/stevengalocr" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
-                GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* IN-CONTENT AD */}
+      <div className="container" style={{ paddingBottom: 40 }}>
+        <AdBlock format="inline" slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_INLINE} />
+      </div>
 
       {/* HOW IT WORKS */}
       <section style={{ borderTop: '1px solid var(--line)', background: 'var(--ink-2)' }}>
