@@ -106,8 +106,11 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* Cover image */}
           <div style={{ aspectRatio: '21/9', borderRadius: 18, overflow: 'hidden', border: '1px solid var(--line)', position: 'relative', marginTop: 32 }}
-            className={article.coverClass}>
-            <span className="cover-orn" style={{ fontSize: 240 }}>{article.coverOrn}</span>
+            className={!article.image ? article.coverClass : ''}>
+            {article.image
+              ? <img src={article.image} alt={article.headline} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              : <span className="cover-orn" style={{ fontSize: 240 }}>{article.coverOrn}</span>
+            }
           </div>
         </div>
       </header>

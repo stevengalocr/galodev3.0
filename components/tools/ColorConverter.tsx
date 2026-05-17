@@ -169,7 +169,7 @@ export default function ColorConverter() {
               <div key={label as string} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: color as string }}>{label as string}</span>
                 <input type="number" min={0} max={255} value={val as number} onChange={e => (set as (v: number) => void)(Number(e.target.value))}
-                  style={{ width: 52, padding: '4px 8px', background: 'var(--ink-2)', border: '1px solid var(--line)', borderRadius: 6, color: 'var(--paper)', fontFamily: 'var(--font-mono)', fontSize: 13, outline: 'none', textAlign: 'center' }} />
+                  style={{ width: 64, padding: '4px 6px', background: 'var(--ink-2)', border: '1px solid var(--line)', borderRadius: 6, color: 'var(--paper)', fontFamily: 'var(--font-mono)', fontSize: 13, outline: 'none', textAlign: 'center' }} />
               </div>
             ))}
           </div>
