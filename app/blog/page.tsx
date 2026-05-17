@@ -64,7 +64,7 @@ export default function BlogPage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 32 }}>
                 <span style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--ink-3)', border: '1px solid var(--line)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--lime)', fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 22 }}>G</span>
                 <div>
-                  <div style={{ fontSize: 14, color: 'var(--paper)' }}>Galo</div>
+                  <div style={{ fontSize: 14, color: 'var(--paper)' }}>Steven Galo</div>
                   <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--paper-mute)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>{latest.date} · {latest.readTime} lectura</div>
                 </div>
               </div>

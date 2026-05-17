@@ -81,7 +81,7 @@ export default async function ArticleOGImage({ params }: Props) {
               color: '#5BD1FF', fontSize: 22, fontStyle: 'italic',
             }}>G</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              <span style={{ color: '#F4F0E8', fontSize: 15 }}>Galo</span>
+              <span style={{ color: '#F4F0E8', fontSize: 15 }}>Steven Galo</span>
               <span style={{ color: '#9B9589', fontFamily: 'monospace', fontSize: 11, letterSpacing: '0.06em', textTransform: 'uppercase' }}>Fundador · Costa Rica</span>
             </div>
           </div>

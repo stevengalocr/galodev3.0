@@ -40,6 +40,7 @@ export default async function ArticlePage({ params }: Props) {
   if (!article) notFound();
 
   const related = articles.filter((a) => a.slug !== article.slug).slice(0, 3);
+  const wordCount = article.content.replace(/<[^>]+>/g, ' ').trim().split(/\s+/).filter(Boolean).length;
 
   const breadcrumbLd = {
     '@context': 'https://schema.org',
@@ -57,7 +58,7 @@ export default async function ArticlePage({ params }: Props) {
     headline: article.headline,
     description: article.lede,
     datePublished: article.dateISO,
-    author: { '@type': 'Person', name: 'Galo', url: 'https://galodev.com/about' },
+    author: { '@type': 'Person', name: 'Steven Galo', url: 'https://galodev.com/about' },
     publisher: { '@type': 'Organization', name: 'GaloDev', url: 'https://galodev.com' },
   };
 
@@ -94,7 +95,7 @@ export default async function ArticlePage({ params }: Props) {
             <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
               <span style={{ width: 48, height: 48, borderRadius: '50%', background: 'var(--ink-3)', border: '1px solid var(--line)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--lime)', fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 26 }}>G</span>
               <div>
-                <div style={{ fontSize: 15, color: 'var(--paper)' }}>Galo</div>
+                <div style={{ fontSize: 15, color: 'var(--paper)' }}>Steven Galo</div>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--paper-mute)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Fundador · Costa Rica</div>
               </div>
             </div>
@@ -120,7 +121,7 @@ export default async function ArticlePage({ params }: Props) {
         <div className="a-body">
 
           {/* TOC */}
-          <ArticleTOC toc={article.toc} />
+          <ArticleTOC toc={article.toc} wordCount={wordCount} />
 
           {/* ARTICLE CONTENT */}
           <article style={{ maxWidth: 720, fontSize: 18, lineHeight: 1.7, color: 'var(--paper-dim)' }} className="a-content"
@@ -136,9 +137,9 @@ export default async function ArticlePage({ params }: Props) {
               <p style={{ fontFamily: 'var(--font-serif)', fontSize: 22, lineHeight: 1.15, letterSpacing: '-0.015em', margin: '12px 0 16px' }}>
                 Un café cubre <em style={{ color: 'var(--lime)' }}>tres días</em> de costes de servidor.
               </p>
-              <Link href="/about#apoya" className="btn btn-glow btn-sm" style={{ width: '100%', justifyContent: 'center' }}>
+              <a href="https://ko-fi.com/galodev" target="_blank" rel="noopener noreferrer" className="btn btn-glow btn-sm" style={{ width: '100%', justifyContent: 'center' }}>
                 Apoya el proyecto · $3
-              </Link>
+              </a>
             </div>
 
             <RelatedArticles currentSlug={article.slug} category={article.category} relatedSlugs={article.relatedSlugs} />

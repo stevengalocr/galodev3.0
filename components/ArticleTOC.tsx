@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react';
 import type { TocItem } from '@/lib/articles';
 
-type Props = { toc: TocItem[] };
+type Props = { toc: TocItem[]; wordCount: number };
 
-export default function ArticleTOC({ toc }: Props) {
+export default function ArticleTOC({ toc, wordCount }: Props) {
   const [activeId, setActiveId] = useState(toc[0]?.id ?? '');
 
   useEffect(() => {
@@ -54,10 +54,7 @@ export default function ArticleTOC({ toc }: Props) {
         Lectura
       </h4>
       <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--paper-mute)', letterSpacing: '0.06em', lineHeight: 1.8 }}>
-        <div>~1,200 palabras</div>
-        <div style={{ marginTop: 8, paddingTop: 12, borderTop: '1px solid var(--line)' }}>
-          <a href="#" style={{ color: 'var(--lime)' }}>↓ Guardar como PDF</a>
-        </div>
+        <div>{wordCount.toLocaleString('es')} palabras</div>
       </div>
     </aside>
   );
