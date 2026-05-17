@@ -14,17 +14,17 @@ export const metadata: Metadata = {
 };
 
 const faqItems = [
-  { q: '¿Es realmente gratis? ¿Dónde está la trampa?', a: 'Sin trampa. Cada herramienta, cada función, para siempre. El sitio se financia con un único slot de publicidad por página (claramente etiquetado) y propinas voluntarias ocasionales. Sin tier premium, sin upsell, sin "exportar requiere registro."' },
+  { q: '¿Es realmente gratis? ¿Dónde está la trampa?', a: 'Sin trampa. Cada herramienta, cada función, para siempre. El sitio se financia con publicidad discreta (claramente etiquetada) y propinas voluntarias ocasionales. Sin tier premium, sin upsell, sin "exportar requiere registro."' },
   { q: '¿Guardas mis archivos o datos?', a: 'No. Literalmente no podemos. Cada herramienta corre completamente en tu navegador usando WebAssembly o JavaScript nativo. Los archivos se procesan localmente y nunca se suben. Verifica abriendo DevTools → pestaña Network mientras usas cualquier herramienta.' },
   { q: '¿Puedo solicitar una herramienta?', a: 'Sí — así es como se construyó la mitad de las herramientas actuales. Abre un issue en GitHub o escríbenos. Si es ampliamente útil y factible en el lado del cliente, espera que esté lista en 5-10 días.' },
   { q: '¿Por qué no hay cuentas de usuario?', a: 'Porque las herramientas no las necesitan. Los ajustes persisten en localStorage, el trabajo es solo tuyo, y no hay nada que sincronizar. Las cuentas implicarían una base de datos, lo que implicaría costes, lo que implicaría un tier de pago. Nos saltamos todo eso.' },
   { q: '¿Puedo usar las herramientas comercialmente?', a: 'Sí. Genera logos para clientes, construye paletas para producción, formatea JSON en tu trabajo. El output es tuyo.' },
-  { q: '¿Cómo puedo apoyar el proyecto?', a: 'No bloquees el único anuncio, comparte una herramienta con un amigo, dale una estrella al repo, o envía una propina si realmente quieres. Nada de esto es obligatorio.' },
+  { q: '¿Cómo puedo apoyar el proyecto?', a: 'No bloquees los anuncios, comparte una herramienta con un amigo, dale una estrella al repo en GitHub, o invítanos un café en ko-fi.com/galodev si realmente quieres. Nada de esto es obligatorio.' },
 ];
 
 const marqueeItems = [
-  'Recortar Video', 'Comprimir Video', 'Crear GIF', 'Descargar Reels',
-  'Descargar TikTok', 'Codificar Base64', 'Generador de Contraseñas', 'Formato JSON',
+  'Pomodoro Timer', 'Generador UUID', 'Decodificar JWT', 'Regex Tester',
+  'Convertidor Unidades', 'Codificar Base64', 'Generador de Contraseñas', 'Formato JSON',
   'Paleta de Colores', 'Código QR', 'Comprimir Imagen', 'Editor Markdown',
 ];
 
@@ -43,7 +43,7 @@ export default function HomePage() {
         }} />
         <div className="container">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
-            <span className="kicker">v1.0 · 13 herramientas · sin registro, nunca</span>
+            <span className="kicker">v1.0 · 15 herramientas · sin registro, nunca</span>
           </div>
 
           <h1 style={{
@@ -86,11 +86,11 @@ export default function HomePage() {
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                 {[
-                  { name: 'TikTok Downloader', cat: 'Social', slug: 'tiktok-downloader' },
-                  { name: 'Reels Downloader', cat: 'Social', slug: 'reels-downloader' },
-                  { name: 'Video Trimmer', cat: 'Video', slug: 'video-trimmer' },
-                  { name: 'Video Compressor', cat: 'Video', slug: 'video-compressor' },
-                  { name: 'GIF Maker', cat: 'Video', slug: 'gif-maker' },
+                  { name: 'JSON Formatter', cat: 'Dev', slug: 'json-formatter' },
+                  { name: 'Password Generator', cat: 'Dev', slug: 'password-generator' },
+                  { name: 'Image Compressor', cat: 'Utilidades', slug: 'image-compressor' },
+                  { name: 'QR Code Maker', cat: 'Utilidades', slug: 'qr-code-maker' },
+                  { name: 'Color Converter', cat: 'Utilidades', slug: 'color-converter' },
                 ].map((item) => (
                   <Link key={item.name} href={`/tools/${item.slug}`} style={{
                     display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -113,7 +113,7 @@ export default function HomePage() {
             position: 'relative', zIndex: 1,
           }}>
             {[
-              { num: '13', suf: '', label: 'Herramientas disponibles' },
+              { num: '15', suf: '', label: 'Herramientas disponibles' },
               { num: '0', suf: '$', label: 'Para siempre, para todo' },
               { num: '0', suf: '', label: 'Datos enviados a servidores' },
               { num: '100', suf: '%', label: 'Client-side, privado' },
@@ -181,7 +181,7 @@ export default function HomePage() {
             <em style={{ color: 'var(--lime)', fontStyle: 'italic' }}> email, mi alma</em>, y 14 anuncios antes de dejarme hacer clic.<span style={{ color: 'var(--paper-fade)' }}>&rdquo;</span>
           </p>
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--paper-mute)' }}>
-            — Galo, fundador · 1 persona, 13 herramientas, 0 rastreadores
+            — Steven Galo, fundador · 1 persona, 15 herramientas, 0 rastreadores
           </span>
         </div>
       </div>
@@ -202,7 +202,7 @@ export default function HomePage() {
             <div>
               {[
                 { n: '01', h: 'Todo corre en tu navegador.', p: 'Tus archivos nunca tocan un servidor. Cierra la pestaña, los datos desaparecen. La mayoría de los "conversores online" no pueden prometer eso. GaloDev sí — abre la pestaña de red y compruébalo.' },
-                { n: '02', h: 'Un anuncio por página, máximo.', p: 'Sí, este sitio tiene anuncios — así es como se mantiene gratis. Pero verás uno, claramente etiquetado, nunca video con reproducción automática, nunca intersticiales. La herramienta es el producto.' },
+                { n: '02', h: 'Anuncios discretos, nunca intrusivos.', p: 'Sí, este sitio tiene anuncios — así es como se mantiene gratis. Pero nunca encontrarás videos con reproducción automática, intersticiales que bloqueen el contenido ni anuncios disfrazados de botones. La herramienta es el producto.' },
                 { n: '03', h: 'Diseñado una vez, publicado cada día.', p: 'Cada herramienta usa el mismo sistema de diseño, así que una vez que aprendes una, las conoces todas. Nueva herramienta aproximadamente cada 5 días.' },
                 { n: '04', h: 'Open source donde importa.', p: 'El motor principal, el framework de herramientas, los tokens de diseño — todo con licencia MIT en GitHub. Fórkalo, cópialo, aprende de él.' },
               ].map((item) => (
