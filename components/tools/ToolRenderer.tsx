@@ -1,7 +1,8 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
+import { analytics } from '@/lib/analytics';
 
 const TOOLS: Record<string, React.ComponentType> = {
   // Developer tools
@@ -44,6 +45,7 @@ interface Props { slug: string }
 
 export default function ToolRenderer({ slug }: Props) {
   const Tool = TOOLS[slug];
+  useEffect(() => { analytics.toolUsed(slug); }, [slug]);
   if (!Tool) return null;
   return (
     <Suspense fallback={<LoadingState />}>

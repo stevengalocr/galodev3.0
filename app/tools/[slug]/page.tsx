@@ -8,6 +8,7 @@ import ToolCard from '@/components/ToolCard';
 import ToolRenderer from '@/components/tools/ToolRenderer';
 import { hasImplementation } from '@/lib/toolsImpl';
 import ToolSchema from '@/components/ToolSchema';
+import ErrorBoundary from '@/components/ErrorBoundary';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -114,7 +115,9 @@ export default async function ToolPage({ params }: Props) {
 
             {/* Tool content */}
             {implemented ? (
-              <ToolRenderer slug={slug} />
+              <ErrorBoundary toolName={tool.name}>
+                <ToolRenderer slug={slug} />
+              </ErrorBoundary>
             ) : (
               <div style={{
                 padding: '60px 40px', textAlign: 'center', minHeight: 300,

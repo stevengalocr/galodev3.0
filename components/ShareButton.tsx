@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { analytics } from '@/lib/analytics';
 
 type Props = { title: string; url: string };
 
@@ -11,6 +12,7 @@ export default function ShareButton({ title, url }: Props) {
     if (typeof navigator !== 'undefined' && navigator.share) {
       try {
         await navigator.share({ title, url });
+        analytics.shared('native', url);
         return;
       } catch {
         // user cancelled — do nothing
@@ -21,6 +23,7 @@ export default function ShareButton({ title, url }: Props) {
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
+      analytics.shared('copy_link', url);
       setTimeout(() => setCopied(false), 2000);
     } catch {
       // clipboard unavailable — ignore

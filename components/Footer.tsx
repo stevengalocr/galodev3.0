@@ -36,10 +36,11 @@ export default function Footer() {
           <div className="footer-col">
             <h4>Herramientas</h4>
             <ul>
-              <li><Link href="/tools/video-trimmer">Recortar Video</Link></li>
-              <li><Link href="/tools/video-compressor">Comprimir Video</Link></li>
-              <li><Link href="/tools/gif-maker">Crear GIF</Link></li>
-              <li><Link href="/tools/base64">Base64 Tool</Link></li>
+              <li><Link href="/tools/json-formatter">JSON Formatter</Link></li>
+              <li><Link href="/tools/password-generator">Password Generator</Link></li>
+              <li><Link href="/tools/color-converter">Color Converter</Link></li>
+              <li><Link href="/tools/qr-code-maker">QR Code Maker</Link></li>
+              <li><Link href="/tools/regex-tester">Regex Tester</Link></li>
               <li><Link href="/tools">Todas →</Link></li>
             </ul>
           </div>
@@ -49,9 +50,9 @@ export default function Footer() {
             <ul>
               <li><Link href="/blog">Blog</Link></li>
               <li><Link href="/blog/que-es-nextjs">¿Qué es Next.js?</Link></li>
-              <li><Link href="/blog/que-es-docker">¿Qué es Docker?</Link></li>
-              <li><Link href="/blog/claude-vs-chatgpt">Claude vs ChatGPT</Link></li>
+              <li><Link href="/blog/chatgpt-vs-claude-vs-gemini">ChatGPT vs Claude vs Gemini</Link></li>
               <li><Link href="/blog/desplegar-con-vercel">Deploy con Vercel</Link></li>
+              <li><Link href="/blog/programar-mas-rapido-con-ia">IA para programar</Link></li>
               <li><Link href="/blog">Todos →</Link></li>
             </ul>
           </div>

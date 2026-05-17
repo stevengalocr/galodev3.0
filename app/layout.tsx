@@ -4,6 +4,7 @@ import { Instrument_Serif, JetBrains_Mono } from 'next/font/google';
 import Script from 'next/script';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import CookieConsent from '@/components/CookieConsent';
 import './globals.css';
 
 const instrumentSerif = Instrument_Serif({
@@ -95,6 +96,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <CookieConsent />
       </body>
     </html>
   );
