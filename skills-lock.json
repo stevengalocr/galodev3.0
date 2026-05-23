@@ -1,0 +1,287 @@
+{
+  "version": 1,
+  "skills": {
+    "brainstorming": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/brainstorming/SKILL.md",
+      "computedHash": "8df9b47092524833138b58682d03f2e153a242e550d1693657afdbee0cc9cdb0"
+    },
+    "brandkit": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/brandkit/SKILL.md",
+      "computedHash": "b63012f3c3d21197e0185d3e9cc7ec40c589fb10e0b5a32a561739de31aa3f20"
+    },
+    "ckm:banner-design": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/banner-design/SKILL.md",
+      "computedHash": "7bbf0f48704f5c40436e3466d7ef9bcbafe35a84eb8c3e9d0ab76408a57bac5c"
+    },
+    "ckm:brand": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/brand/SKILL.md",
+      "computedHash": "89c8579d232e6e14152a8b898d49eb94f59aa7288ed8ca103cd3b38cb082e00a"
+    },
+    "ckm:design": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/design/SKILL.md",
+      "computedHash": "2020e511bb6fbc1dbc233d1da335ec7e8cb553d6e321d34cec4555efcc9ec8f1"
+    },
+    "ckm:design-system": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/design-system/SKILL.md",
+      "computedHash": "49b8308dc428c66b0983f4b3d102c522c495f62538121064d1e82a040b1afd2c"
+    },
+    "ckm:slides": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/slides/SKILL.md",
+      "computedHash": "6d753831914ed6703b7222153f2710efc2f195f0ab24fd2119c76c2b6d1a6ba1"
+    },
+    "ckm:ui-styling": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/ui-styling/SKILL.md",
+      "computedHash": "9ae38e4e201f338b6150e462b98a2db0f2ae7c180c77e8cfb1d33eba9d33bf33"
+    },
+    "design-taste-frontend": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/taste-skill/SKILL.md",
+      "computedHash": "9d1e82c5c409d2b0247245a005bc0f7e4447c0999b78dcea60f568c1ba4a6694"
+    },
+    "dispatching-parallel-agents": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/dispatching-parallel-agents/SKILL.md",
+      "computedHash": "e21044ae7496fc285f1df9ff3fb518a3a20bea6f5216c1f59f4987e12c769a0a"
+    },
+    "executing-plans": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/executing-plans/SKILL.md",
+      "computedHash": "b41c919caf1bb07fbacb0e29899ac513f9eb11cd4dd695975ad352c2c03cc4d7"
+    },
+    "finishing-a-development-branch": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/finishing-a-development-branch/SKILL.md",
+      "computedHash": "932d23af11a3eb2b758f5b1d9aec7b6d28ddd26658328414f87f34dff7179d19"
+    },
+    "full-output-enforcement": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/output-skill/SKILL.md",
+      "computedHash": "26bd29ce4c5e02c7666b2d503609bf466bd32290822e91f0e984147048dbb924"
+    },
+    "gpt-taste": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/gpt-tasteskill/SKILL.md",
+      "computedHash": "cc8f0c601d8240a124e1d11634351a2be7b8a72fd807c75e5b6bf7afcd5ddee0"
+    },
+    "guide-recap": {
+      "source": "FlorianBruniaux/claude-code-ultimate-guide",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/guide-recap/SKILL.md",
+      "computedHash": "42bead9b253c19429388d7ed9fb63f9a1b2b6e5cc3bcf6e50ad99aecce9ea20c"
+    },
+    "high-end-visual-design": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/soft-skill/SKILL.md",
+      "computedHash": "7db385e4c5370e5a7fca9704a1361b056e4504ea6a03924bb86f33a4f00b5c73"
+    },
+    "image-to-code": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/image-to-code-skill/SKILL.md",
+      "computedHash": "58517b03b2a01f4c9ba65861559d03df931400871bbc200978c975b24bb92c73"
+    },
+    "imagegen-frontend-mobile": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/imagegen-frontend-mobile/SKILL.md",
+      "computedHash": "9ab7f4f6ce66a3cff02bbf5894e5bd5af50bf5d6ef0adffdc88e8fab772fe44f"
+    },
+    "imagegen-frontend-web": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/imagegen-frontend-web/SKILL.md",
+      "computedHash": "65f5ae59fa317567809438310b1c54f78cd133426deb43e4d3d4ca4c8f541628"
+    },
+    "impeccable": {
+      "source": "pbakaus/impeccable",
+      "sourceType": "github",
+      "skillPath": "skill/SKILL.md",
+      "computedHash": "34e59a34b9705187e87039faa5d9585aebe0056ef657f761b905afef276a3362"
+    },
+    "industrial-brutalist-ui": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/brutalist-skill/SKILL.md",
+      "computedHash": "8fc355c4aadb7d29c53ca28bc41be3cd6eea765d121e3737c4dc2d0f90a8effa"
+    },
+    "minimalist-ui": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/minimalist-skill/SKILL.md",
+      "computedHash": "08873a3131d3be27bef9bf3304b310b16b44ca6e3561aebe532797be3443f6bd"
+    },
+    "receiving-code-review": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/receiving-code-review/SKILL.md",
+      "computedHash": "2760c85d4f4117b0006e7ba755f4bbd61f8f4c185f347999763c97f507274e30"
+    },
+    "redesign-existing-projects": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/redesign-skill/SKILL.md",
+      "computedHash": "b405eee0e0e80fc243f731d9aa368bca307e356db7e6157d27101d369dac6726"
+    },
+    "requesting-code-review": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/requesting-code-review/SKILL.md",
+      "computedHash": "874f3786b05007a8b4a60452a4cd89b9917c645d34b6b1e40ea05037d12f0e67"
+    },
+    "self-assessment": {
+      "source": "FlorianBruniaux/claude-code-ultimate-guide",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/self-assessment/SKILL.md",
+      "computedHash": "a2a4a66363bea4baab373c78f155b8f24ad9a3fb84ff11e208c70f0c6c2a518d"
+    },
+    "source-command-audit-prose": {
+      "source": "FlorianBruniaux/claude-code-ultimate-guide",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/source-command-audit-prose/SKILL.md",
+      "computedHash": "90f61c8c5c65c8a6fa8c04c2556ae67dc7163df38580c02dc51651df6273d60a"
+    },
+    "source-command-audit-whitepapers": {
+      "source": "FlorianBruniaux/claude-code-ultimate-guide",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/source-command-audit-whitepapers/SKILL.md",
+      "computedHash": "6350c58286e5f568539dc787463fd66ff3c4310864a1f94190e952597fd48fdf"
+    },
+    "source-command-ccguide-daily": {
+      "source": "FlorianBruniaux/claude-code-ultimate-guide",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/source-command-ccguide-daily/SKILL.md",
+      "computedHash": "9eec45cb0251f8e856fb04df425cb4f6219873cdf56090fc7cdfe49a5cc63c5f"
+    },
+    "source-command-ccguide-diff-docs": {
+      "source": "FlorianBruniaux/claude-code-ultimate-guide",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/source-command-ccguide-diff-docs/SKILL.md",
+      "computedHash": "a7359c230199867af08d2ce1c2464c2431846031780ec49e93fd0e00526e8505"
+    },
+    "source-command-ccguide-init-docs": {
+      "source": "FlorianBruniaux/claude-code-ultimate-guide",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/source-command-ccguide-init-docs/SKILL.md",
+      "computedHash": "e4710d51114401d5d28bb67f93487bd7927b1dc27450be7c8de1276c627a28d7"
+    },
+    "source-command-ccguide-refresh-docs": {
+      "source": "FlorianBruniaux/claude-code-ultimate-guide",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/source-command-ccguide-refresh-docs/SKILL.md",
+      "computedHash": "4c83bba5ef39e3c6a2d9f3d3ce286ace6d4cda80066c5ab623f30abeafd77be0"
+    },
+    "source-command-changelog": {
+      "source": "FlorianBruniaux/claude-code-ultimate-guide",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/source-command-changelog/SKILL.md",
+      "computedHash": "12b175c993978333826e5f0d7c10d0198accd23da24e10d9a2e801855c1edc71"
+    },
+    "source-command-methodology-advisor": {
+      "source": "FlorianBruniaux/claude-code-ultimate-guide",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/source-command-methodology-advisor/SKILL.md",
+      "computedHash": "91701861be727a9292de8ab890db912896dcece53a37da42b5e559dd5cd4b488"
+    },
+    "source-command-sync": {
+      "source": "FlorianBruniaux/claude-code-ultimate-guide",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/source-command-sync/SKILL.md",
+      "computedHash": "8f00be9070839ea1e9d8b6153d6b36a5af665fa64c41a899d836ef3dc58fc514"
+    },
+    "source-command-track-mentions": {
+      "source": "FlorianBruniaux/claude-code-ultimate-guide",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/source-command-track-mentions/SKILL.md",
+      "computedHash": "548aca1462ed5800388e12c266c4604ca848d20f98d06bda0d7a6edd37f97bda"
+    },
+    "source-command-update-infos-release": {
+      "source": "FlorianBruniaux/claude-code-ultimate-guide",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/source-command-update-infos-release/SKILL.md",
+      "computedHash": "452cadfccf12d49ec0ca69e5c647c3d6bc6bb9c9f821f5921f7f6af8cca0aae3"
+    },
+    "stitch-design-taste": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/stitch-skill/SKILL.md",
+      "computedHash": "3aa58992f0fd9673b975cd48cd4f8ae4b4976fd5cdd9f20e26d3d447aee317fb"
+    },
+    "subagent-driven-development": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/subagent-driven-development/SKILL.md",
+      "computedHash": "b38be2f3a092d758127f6d47e77c2493885aebf38aae359e4c786df2c343b837"
+    },
+    "systematic-debugging": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/systematic-debugging/SKILL.md",
+      "computedHash": "7246fdd3a795fc3daff0af72044ca99bf836e4e6a46844742858786fdfb86488"
+    },
+    "test-driven-development": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/test-driven-development/SKILL.md",
+      "computedHash": "126f1ebf6ccd414f42544f6e83d8cc5adb089e1108eaffb7c400701e37eecd9f"
+    },
+    "ui-ux-pro-max": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/ui-ux-pro-max/SKILL.md",
+      "computedHash": "0a413bf988d06481f69bb81df2070741c3ba12dd9f1be2706d57f259c905992d"
+    },
+    "using-git-worktrees": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/using-git-worktrees/SKILL.md",
+      "computedHash": "bd10bc57c23040630b17c877a9bc7b4be40c35161a2e2f110d770d78e3b0a4ff"
+    },
+    "using-superpowers": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/using-superpowers/SKILL.md",
+      "computedHash": "de10fd3ff46d797acc92b9df6b3ea456a5cd1d095b73c90bc921e83cce4c5bb9"
+    },
+    "verification-before-completion": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/verification-before-completion/SKILL.md",
+      "computedHash": "9b446f0c7fe1cfb560b1d34439523b1a76d5f177290007b2c053a1c749a4a8ba"
+    },
+    "writing-plans": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/writing-plans/SKILL.md",
+      "computedHash": "2b986445454a025ca2c3839f8a2024747e8cce0517948437232cd113d2719060"
+    },
+    "writing-skills": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/writing-skills/SKILL.md",
+      "computedHash": "c0a92e629e39ea91b1f54da67a6aa92723008a8ef5b500c6de078f55485937c7"
+    }
+  }
+}

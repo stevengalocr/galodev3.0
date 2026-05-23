@@ -6,7 +6,7 @@
 
 ## Overview
 
-Each tool is a self-contained React client component rendered inside the tool detail page. Tools run 100% in the browser — no data leaves the user's device (except social downloaders which proxy through a Next.js API route to bypass CORS).
+Each tool is a self-contained React client component rendered inside the tool detail page. Tools run 100% in the browser — no data leaves the user's device. All 15 tools are currently live.
 
 ---
 
@@ -14,30 +14,45 @@ Each tool is a self-contained React client component rendered inside the tool de
 
 ```
 lib/
-  tools.ts          ← Tool registry (metadata for all tools, including coming-soon)
-  toolsImpl.ts      ← Set of slugs that have a working implementation
+  tools.ts          ← Tool registry (metadata + seoText for all 15 tools)
+  toolsImpl.ts      ← Set of slugs that have a working implementation (all 15)
 
 components/
   ToolCard.tsx      ← Grid card with SVG icon map + links to tool page
+  ToolsFilter.tsx   ← Client-side category filter for /tools page
+  AdBlock.tsx       ← AdSense unit renderer (real or placeholder)
   tools/
-    ToolRenderer.tsx     ← Dynamic dispatcher: slug → component
-    useFFmpeg.ts         ← Shared hook for FFmpeg.wasm initialization
+    ToolRenderer.tsx     ← Dynamic dispatcher: slug → component (ssr: false)
     Base64Tool.tsx       ← Base64 encode / decode
-    VideoTrimmer.tsx     ← FFmpeg stream-copy trim
-    VideoCompressor.tsx  ← FFmpeg libx264 compress with CRF presets
-    GifMaker.tsx         ← FFmpeg 2-pass palette GIF
-    SocialDownloader.tsx ← Shared UI for Reels + TikTok (RapidAPI proxy)
-    ReelsDownloader.tsx  ← Thin wrapper → <SocialDownloader platform="reels" />
-    TikTokDownloader.tsx ← Thin wrapper → <SocialDownloader platform="tiktok" />
+    JsonFormatter.tsx    ← JSON format, validate, minify
+    PasswordGenerator.tsx ← Secure password with entropy meter
+    RegexTester.tsx      ← Regex tester with cheatsheet
+    JwtDecoder.tsx       ← JWT header/payload decoder & validator
+    UuidGenerator.tsx    ← UUID v4/v7 bulk generator
+    MarkdownPreviewer.tsx ← Live Markdown preview with GFM
+    PomodoroTimer.tsx    ← Pomodoro timer with settings
+    QuickNotes.tsx       ← Auto-save notes with localStorage
+    FocusMode.tsx        ← Full-screen focus mode
+    QrCodeMaker.tsx      ← QR encoder (Reed-Solomon, no deps)
+    ImageCompressor.tsx  ← Client-side PNG/JPG/WebP compression
+    UnitConverter.tsx    ← Length, weight, temp, storage, CSS units
+    ColorConverter.tsx   ← HEX/RGB/HSL/OKLCH + Tailwind match
+    UrlEncoder.tsx       ← encodeURIComponent / encodeURI
 
 app/
-  tools/[slug]/page.tsx  ← Tool detail page (Server Component)
-  api/download/route.ts  ← RapidAPI proxy for social media downloads
+  tools/
+    page.tsx             ← /tools listing page (Server Component)
+    [slug]/page.tsx      ← Tool detail page (Server Component, SSG)
+
+public/
+  ads.txt              ← google.com, pub-8417467581385725, DIRECT, ...
+  sitemap.xml          ← auto-generated via app/sitemap.ts
 
 .env.local
-  RAPIDAPI_KEY          ← Secret — never NEXT_PUBLIC_
-  RAPIDAPI_HOST         ← social-media-video-downloader.p.rapidapi.com
-  NEXT_PUBLIC_ADSENSE_ID ← ca-pub-8417467581385725
+  NEXT_PUBLIC_ADSENSE_SLOT_LEADERBOARD ← slot ID from AdSense dashboard
+  NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR     ← slot ID from AdSense dashboard
+  NEXT_PUBLIC_ADSENSE_SLOT_INLINE      ← slot ID from AdSense dashboard
+  NEXT_PUBLIC_GA_MEASUREMENT_ID        ← GA4 measurement ID (optional)
 ```
 
 ---
@@ -52,11 +67,20 @@ Add an entry to the `tools` array. Every field is required:
 {
   slug: 'my-new-tool',         // kebab-case, URL-safe
   name: 'My New Tool',         // Display name (title case)
-  category: 'Dev',             // Video | Social | Dev | Image | Generator | Text | Converter
+  category: 'Dev',             // Dev | Productividad | Utilidades
   desc: 'One-sentence …',      // Max ~120 chars. No trailing period.
   uses: '0 hoy',               // Placeholder — update to realistic number later
   icon: 'code',                // Must exist in the ToolCard icon map (see below)
-  comingSoon: true,            // Set true until the component is ready
+  seoText: {                   // Required for SEO — shown below the tool
+    what: 'What this tool does…',
+    how: 'How to use it…',
+    faqs: [
+      { q: 'Question?', a: 'Answer.' },
+      { q: 'Question?', a: 'Answer.' },
+      { q: 'Question?', a: 'Answer.' },
+      { q: 'Question?', a: 'Answer.' },
+    ],
+  },
 },
 ```
 
@@ -95,7 +119,7 @@ export default function MyNewTool() {
 **Design conventions:**
 - Outer padding: `32px 40px`
 - Section labels: `fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--paper-mute)'`
-- Primary action button: `className="btn btn-lime"`
+- Primary action button: `className="btn btn-glow"`
 - Secondary action button: `className="btn btn-ghost"`
 - Drop zone / surface: `background: 'var(--ink-3)', border: '1px solid var(--line)', borderRadius: 12`
 - Success/output area: `background: 'var(--ink-2)', border: '1px solid var(--line)', borderRadius: 8`
@@ -123,7 +147,7 @@ const IMPLEMENTED_SLUGS = new Set([
 
 This controls the `● Live` / `○ Próximamente` pill on the tool page.
 
-### 6. Remove `comingSoon: true` from `lib/tools.ts`
+### 6. Remove `comingSoon: true` from `lib/tools.ts` (if it was set)
 
 ---
 
@@ -155,96 +179,64 @@ This controls the `● Live` / `○ Próximamente` pill on the tool page.
 
 ---
 
-## FFmpeg Tools Pattern
+## Currently Implemented Tools (all 15)
 
-For video/audio processing tools, use the shared `useFFmpeg` hook:
+| Slug | Component | Category |
+|------|-----------|----------|
+| `json-formatter` | `JsonFormatter.tsx` | Dev |
+| `base64` | `Base64Tool.tsx` | Dev |
+| `password-generator` | `PasswordGenerator.tsx` | Dev |
+| `regex-tester` | `RegexTester.tsx` | Dev |
+| `jwt-decoder` | `JwtDecoder.tsx` | Dev |
+| `uuid-generator` | `UuidGenerator.tsx` | Dev |
+| `markdown-previewer` | `MarkdownPreviewer.tsx` | Dev |
+| `pomodoro-timer` | `PomodoroTimer.tsx` | Productividad |
+| `quick-notes` | `QuickNotes.tsx` | Productividad |
+| `focus-mode` | `FocusMode.tsx` | Productividad |
+| `qr-code-maker` | `QrCodeMaker.tsx` | Utilidades |
+| `image-compressor` | `ImageCompressor.tsx` | Utilidades |
+| `unit-converter` | `UnitConverter.tsx` | Utilidades |
+| `color-converter` | `ColorConverter.tsx` | Utilidades |
+| `url-encoder` | `UrlEncoder.tsx` | Utilidades |
 
-```ts
-import { useFFmpeg, ffmpegDataToBlob } from './useFFmpeg';
-
-const { ffmpeg, loaded, loading, progress, load } = useFFmpeg();
-```
-
-**Key behaviors:**
-- FFmpeg core is loaded from CDN (`unpkg.com/@ffmpeg/core@0.12.6`) on first use — don't block UI on this
-- `ffmpegDataToBlob(raw, mimeType)` safely converts FFmpeg output (handles both `string` and `Uint8Array<ArrayBufferLike>`)
-- Always write input files with unique names per run to avoid stale data
-- Always call `ffmpeg.deleteFile()` after reading output to free WASM memory
-- `progress` is 0–1; show a progress bar for operations > ~1 second
-
-**Typical command pattern:**
-```ts
-await ffmpeg.writeFile('input.mp4', await fetchFile(file));
-await ffmpeg.exec(['-i', 'input.mp4', /* …args… */, 'output.mp4']);
-const raw = await ffmpeg.readFile('output.mp4');
-const blob = ffmpegDataToBlob(raw, 'video/mp4');
-await ffmpeg.deleteFile('input.mp4');
-await ffmpeg.deleteFile('output.mp4');
-```
-
----
-
-## Social Downloader Pattern
-
-Social tools (Reels, TikTok) use `/app/api/download/route.ts` as a server-side proxy:
-
-```
-Browser → GET /api/download?url=<encoded_url> → RapidAPI → video URL
-```
-
-The proxy reads `RAPIDAPI_KEY` and `RAPIDAPI_HOST` from server env (never exposed to the client). The response JSON contains a `url` field with the direct video link.
-
-To add a new social platform, add a case to the `SocialDownloader` component or create a new thin wrapper component pointing at it.
+All 15 slugs are present in `toolsImpl.ts` and `ToolRenderer.tsx`. No tools are "coming soon."
 
 ---
 
 ## AdSense Integration
 
-Publisher ID: `ca-pub-8417467581385725` (set in `.env.local` as `NEXT_PUBLIC_ADSENSE_ID`)
+Publisher ID: `ca-pub-8417467581385725` (hardcoded in `app/layout.tsx`)
 
-The global `<script>` is loaded once in `app/layout.tsx`. Individual ad units are rendered by `<AdBlock>` in tool pages:
+The global `<script>` is loaded once in `app/layout.tsx` with `strategy="afterInteractive"`. Individual ad units are rendered by `<AdBlock>` in tool pages:
 
-| Slot | Location | Format |
+| Slot env var | Location | Format |
 |------|----------|--------|
-| `LEADERBOARD` | Above tool area | 728×90 |
-| `SIDEBAR` | Sidebar top | 300×250 |
-| `INLINE` | Below tool card | 336×280 |
+| `NEXT_PUBLIC_ADSENSE_SLOT_LEADERBOARD` | Above tool area | 728×90 |
+| `NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR` | Sidebar right column | 300×250 |
+| `NEXT_PUBLIC_ADSENSE_SLOT_INLINE` | Below tool card | 336×280 |
 
-Create real slots in AdSense dashboard → copy the slot ID → add to `.env.local`:
-```
-NEXT_PUBLIC_ADSENSE_SLOT_LEADERBOARD=1234567890
-NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR=0987654321
-NEXT_PUBLIC_ADSENSE_SLOT_INLINE=1122334455
-```
+Create real slots in AdSense dashboard → copy the slot ID → add to `.env.local`. Until slots are configured, `<AdBlock>` renders a styled placeholder (no broken layout).
 
-Until slots are configured, `<AdBlock>` renders a styled placeholder (no broken layout).
+`public/ads.txt` is already present:
+```
+google.com, pub-8417467581385725, DIRECT, f08c47fec0942fa0
+```
 
 ---
 
 ## AdSense Review Readiness
 
-All tool pages must meet these criteria before requesting review:
+All tool pages meet these criteria:
 
-- ✅ Real, useful content visible without scrolling
-- ✅ Tool either works (`● Live`) or shows a proper "coming soon" with subscribe form
+- ✅ Real, useful tool visible without scrolling (all 15 live)
+- ✅ `seoText` section with what/how/FAQs below each tool for crawler content
 - ✅ No broken images or missing icons
 - ✅ Privacy-respecting: no external requests except AdSense + Google Fonts
 - ✅ All pages have unique `<title>` and `<meta description>` (via `generateMetadata`)
 - ✅ Mobile-responsive (container max-width + clamp() font sizes)
+- ✅ `/privacy` page discloses AdSense cookie usage
+- ✅ `ads.txt` present at root
 
 ---
 
-## Currently Implemented Tools
-
-| Slug | Component | Type |
-|------|-----------|------|
-| `base64` | `Base64Tool.tsx` | Pure client (crypto) |
-| `video-trimmer` | `VideoTrimmer.tsx` | FFmpeg.wasm |
-| `video-compressor` | `VideoCompressor.tsx` | FFmpeg.wasm |
-| `gif-maker` | `GifMaker.tsx` | FFmpeg.wasm |
-| `reels-downloader` | `ReelsDownloader.tsx` | RapidAPI proxy |
-| `tiktok-downloader` | `TikTokDownloader.tsx` | RapidAPI proxy |
-
----
-
-_Last updated: 2026-05-14_
+_Last updated: 2026-05-23_

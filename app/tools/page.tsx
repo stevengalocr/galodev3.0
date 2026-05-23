@@ -7,7 +7,7 @@ import { tools } from '@/lib/tools';
 
 export const metadata: Metadata = {
   title: 'Herramientas web gratuitas — GaloDev',
-  description: 'Herramientas web gratuitas: video, social, generadores y más. Sin registro, sin rastreos, todo en tu navegador.',
+  description: 'Herramientas web gratuitas para developers: JSON, Base64, Regex, UUID, contraseñas, QR, imágenes y más. Sin registro, sin rastreos, 100% en tu navegador.',
 };
 
 export default function ToolsPage() {

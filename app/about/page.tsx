@@ -124,8 +124,8 @@ export default function AboutPage() {
                 body: 'Sin registros obligatorios. Sin funciones bloqueadas detrás de un plan Pro. Sin pedirte una cuenta para exportar un archivo.\n\nSi una herramienta dice "gratis", debería ser realmente gratis.',
               },
               {
-                title: 'Un anuncio. No doce.',
-                body: 'GaloDev se mantiene con un único bloque de AdSense por página, claramente etiquetado.\n\nSin popups. Sin autoplay. Sin intersticiales.\n\nLa herramienta es el producto.',
+                title: 'Anuncios. No spam.',
+                body: 'GaloDev se mantiene con anuncios de Google AdSense, claramente etiquetados y no intrusivos.\n\nSin popups. Sin autoplay. Sin intersticiales que bloqueen el contenido.\n\nLa herramienta es el producto, no el pretexto.',
               },
               {
                 title: 'Privado por diseño.',
