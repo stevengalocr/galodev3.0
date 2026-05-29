@@ -72,13 +72,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="es"
       className={`${GeistSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
     >
-      <head>
+      <body style={{ fontFamily: 'var(--font-sans)' }}>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+        <CookieConsent />
+
+        {/* Google AdSense — Auto Ads (coloca anuncios automáticamente en todas las páginas) */}
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8417467581385725"
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
+
+        {/* Google Analytics 4 */}
         {gaId && (
           <>
             <Script
@@ -91,12 +99,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </Script>
           </>
         )}
-      </head>
-      <body style={{ fontFamily: 'var(--font-sans)' }}>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <CookieConsent />
       </body>
     </html>
   );
