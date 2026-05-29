@@ -19,13 +19,13 @@ const formatConfig: Record<AdFormat, { label: string; minHeight: number }> = {
   skyscraper: { label: '160×600 · Skyscraper', minHeight: 600 },
 };
 
-const publisherId = process.env.NEXT_PUBLIC_ADSENSE_ID;
+const PUBLISHER_ID = 'ca-pub-8417467581385725';
 
 export default function AdBlock({ format = 'rectangle', slot, className = '', style }: Props) {
   const config = formatConfig[format];
 
   useEffect(() => {
-    if (!publisherId || !slot) return;
+    if (!slot) return;
     try {
       // @ts-expect-error adsbygoogle is injected by the AdSense script
       (window.adsbygoogle = window.adsbygoogle || []).push({});
@@ -34,15 +34,15 @@ export default function AdBlock({ format = 'rectangle', slot, className = '', st
     }
   }, [slot]);
 
-  // Show real AdSense unit when publisher ID is configured
-  if (publisherId && slot) {
+  // Show real AdSense unit when slot ID is configured
+  if (slot) {
     return (
       <div className={`adsense-unit ${className}`} style={style}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <ins
           className="adsbygoogle"
           style={{ display: 'block' }}
-          data-ad-client={publisherId}
+          data-ad-client={PUBLISHER_ID}
           data-ad-slot={slot}
           data-ad-format="auto"
           data-full-width-responsive="true"
